@@ -6,7 +6,7 @@ interface ModsRepository {
 
     suspend fun getModsList(): List<ModEntity>
 
-    suspend fun getItemMod(id: Int): ModEntity
+    fun getItemMod(id: Int): ModEntity?
 
     suspend fun downloadMod(path: String): Boolean
 

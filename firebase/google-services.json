@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1215144303:android:09ba58d5ecc5a74a66c89a",
         "android_client_info": {
-          "package_name": "com.playground.modmelonskins"
+          "package_name": "com.playground.modmelonskins.firebase"
         }
       },
       "oauth_client": [

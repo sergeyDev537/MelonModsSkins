@@ -5,7 +5,7 @@ import com.playground.modmelonskins.domain.repositories.ModsRepository
 
 class GetItemModUseCase(private val modsRepository: ModsRepository) {
 
-    suspend operator fun invoke(id: Int): ModEntity {
+    operator fun invoke(id: Int): ModEntity? {
         return modsRepository.getItemMod(id)
     }
 
