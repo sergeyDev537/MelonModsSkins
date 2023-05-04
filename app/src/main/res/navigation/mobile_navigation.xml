@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_skins">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.playground.modmelonskins.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_skins"
+        android:name="com.playground.modmelonskins.fragments.skins.SkinsFragment"
+        android:label="@string/title_skins"
+        tools:layout="@layout/fragment_skins" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.playground.modmelonskins.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_mods"
+        android:name="com.playground.modmelonskins.fragments.mods.ModsFragment"
+        android:label="@string/title_mods"
+        tools:layout="@layout/fragment_mods" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.playground.modmelonskins.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_info"
+        android:name="com.playground.modmelonskins.fragments.info.InfoFragment"
+        android:label="@string/title_info"
+        tools:layout="@layout/fragment_info" />
 </navigation>
