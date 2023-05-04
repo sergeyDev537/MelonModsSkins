@@ -1,7 +1,7 @@
-package com.playground.modmelonskins.domain.entities
+package com.playground.modmelonskins.data.dto
 
-data class ModEntity(
-    var id: Int,
+data class SkinDto(
+    val id: Int,
     val name: String,
     val description: String,
     val imagesPath: List<String>,
