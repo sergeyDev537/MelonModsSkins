@@ -27,7 +27,7 @@ class ModsViewModel @Inject constructor(
         getListMods()
     }
 
-    fun getListMods(){
+    private fun getListMods(){
         viewModelScope.launch(Dispatchers.IO) {
             val result = getListModsUseCase()
             _listMods.postValue(result)
