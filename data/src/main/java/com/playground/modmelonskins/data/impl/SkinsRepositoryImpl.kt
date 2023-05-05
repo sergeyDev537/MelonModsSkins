@@ -1,12 +1,6 @@
 package com.playground.modmelonskins.data.impl
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.playground.modmelonskins.data.dto.ModDto
-import com.playground.modmelonskins.data.dto.SkinDto
-import com.playground.modmelonskins.data.mapper.ModsMapper
 import com.playground.modmelonskins.data.mapper.SkinsMapper
-import com.playground.modmelonskins.domain.entities.ModEntity
 import com.playground.modmelonskins.domain.entities.SkinEntity
 import com.playground.modmelonskins.domain.repositories.SkinsRepository
 import com.playground.modmelonskins.firebase.FirebaseManager
@@ -20,9 +14,7 @@ class SkinsRepositoryImpl(
 
     override suspend fun getSkinsList(): List<SkinEntity> {
         return try {
-            val json = firebaseManager.getJson(FirebaseManager.FILE_SKINS_JSON)
-            val typeToken = object : TypeToken<List<SkinDto>>() {}.type
-            val listSkinsDto = Gson().fromJson<List<SkinDto>>(json, typeToken)
+            val listSkinsDto = firebaseManager.getListSkins()
             listSkins = skinsMapper.mapListDtoToEntity(listSkinsDto)
             listSkins
         } catch (e: Exception) {

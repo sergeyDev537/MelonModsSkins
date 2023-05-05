@@ -1,46 +1,42 @@
 package com.playground.modmelonskins.firebase
 
-import android.graphics.BitmapFactory
-import android.util.Log
 import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.playground.modmelonskins.firebase.dto.ModDto
+import com.playground.modmelonskins.firebase.dto.SkinDto
 import kotlinx.coroutines.tasks.await
 
 class FirebaseManager {
 
     private val database = Firebase.database
 
-    suspend fun getJson(typeMods: String): String {
+    private suspend fun getDataSnapshot(typeMods: String): DataSnapshot {
         val myRef = database.getReference(typeMods)
-        var str = myRef.get().await()
-        return str.toString()
-//        myRef.addValueEventListener(object: ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                //val value = snapshot.getValue<String>()
-//                Log.d("TAGING", "Value is: " + snapshot.value)
-//                str = snapshot.value.toString()
-//                callback(str)
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                Log.w("TAGING", "Failed to read value.", error.toException())
-//                callback(EMPTY_STRING)
-//            }
-//        })
+        return myRef.get().await()
     }
 
-    suspend fun downloadFile(pathFile: String){
-        // Create a storage reference from our app
-        //var storageRef = FirebaseStorage.getInstance().reference
-
+    suspend fun getListMods():List<ModDto?>{
+        val dataSnapshot = getDataSnapshot(FILE_MODS_JSON)
+        val listDto = mutableListOf<ModDto?>()
+        for (postSnapshot in dataSnapshot.children){
+            val itemDto = postSnapshot.getValue(ModDto::class.java)
+            listDto.add(itemDto)
+        }
+        return listDto
     }
+
+    suspend fun getListSkins():List<SkinDto?>{
+        val dataSnapshot = getDataSnapshot(FILE_SKINS_JSON)
+        val listDto = mutableListOf<SkinDto?>()
+        for (postSnapshot in dataSnapshot.children){
+            val itemDto = postSnapshot.getValue(SkinDto::class.java)
+            listDto.add(itemDto)
+        }
+        return listDto
+    }
+
+
 
     companion object{
 
