@@ -15,11 +15,24 @@
         android:id="@+id/navigation_mods"
         android:name="com.playground.modmelonskins.fragments.mods.ModsFragment"
         android:label="@string/title_mods"
-        tools:layout="@layout/fragment_mods" />
+        tools:layout="@layout/fragment_mods" >
+        <action
+            android:id="@+id/action_navigation_mods_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_info"
         android:name="com.playground.modmelonskins.fragments.info.InfoFragment"
         android:label="@string/title_info"
         tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.playground.modmelonskins.fragments.details.DetailsFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>
