@@ -1,25 +1,26 @@
-package com.playground.modmelonskins.adapters.mods
+package com.playground.modmelonskins.adapters.skins
 
 import com.playground.modmelonskins.adapters.base.BaseAdapter
 import com.playground.modmelonskins.adapters.base.BaseViewHolder
 import com.playground.modmelonskins.databinding.ItemModsSkinsBinding
 import com.playground.modmelonskins.domain.entities.ModEntity
+import com.playground.modmelonskins.domain.entities.SkinEntity
 import com.playground.modmelonskins.extensions.loadImage
 
-class ModsAdapter: BaseAdapter<ModEntity, ItemModsSkinsBinding>(ItemModsSkinsBinding::inflate) {
+class SkinsAdapter: BaseAdapter<SkinEntity, ItemModsSkinsBinding>(ItemModsSkinsBinding::inflate) {
 
-    var clickItemMods: ((Int?) -> Unit)? = null
+    var clickItemSkins: ((Int?) -> Unit)? = null
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        val itemMod = getItem(position)
+        val itemSkin = getItem(position)
         val binding = (holder.binding) as ItemModsSkinsBinding
         val context = binding.root.context
-        binding.tvTitle.text = itemMod.name
-        itemMod?.imagesPath?.get(0)?.let {
+        binding.tvTitle.text = itemSkin.name
+        itemSkin?.imagesPath?.get(0)?.let {
             binding.constraintItem.loadImage(context, it)
         }
         binding.constraintItem.setOnClickListener {
-            clickItemMods?.invoke(itemMod.id)
+            clickItemSkins?.invoke(itemSkin.id)
         }
     }
 }
