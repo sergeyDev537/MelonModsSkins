@@ -7,6 +7,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.playground.modmelonskins.R
 import com.playground.modmelonskins.adapters.skins.SkinsAdapter
 import com.playground.modmelonskins.databinding.FragmentSkinsBinding
 import com.playground.modmelonskins.extensions.showSnackBar
@@ -52,12 +53,32 @@ class SkinsFragment : BaseFragment<FragmentSkinsBinding>(FragmentSkinsBinding::i
             skinsAdapter.submitList(it)
             visibleProgress(false)
         }
+        listSkinsErrors.observe(viewLifecycleOwner){
+            binding.root.showSnackBar(it)
+            if (binding.progressSkins.isVisible){
+                visibleErrorPlaceholder(true)
+            }
+        }
+        networkError.observe(viewLifecycleOwner){
+            binding.root.showSnackBar(requireContext().getString(R.string.error_network))
+            if (binding.progressSkins.isVisible){
+                visibleErrorPlaceholder(true)
+            }
+        }
     }
 
     private fun visibleProgress(boolean: Boolean){
         binding.apply {
             progressSkins.isVisible = boolean
             rvSkins.isGone = boolean
+        }
+    }
+
+    private fun visibleErrorPlaceholder(boolean: Boolean){
+        binding.apply {
+            progressSkins.isGone = boolean
+            rvSkins.isGone = true
+            tvError.isVisible = boolean
         }
     }
 

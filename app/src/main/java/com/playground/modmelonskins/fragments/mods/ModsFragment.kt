@@ -7,6 +7,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.playground.modmelonskins.R
 import com.playground.modmelonskins.adapters.mods.ModsAdapter
 import com.playground.modmelonskins.databinding.FragmentModsBinding
 import com.playground.modmelonskins.extensions.showSnackBar
@@ -53,12 +54,33 @@ class ModsFragment : BaseFragment<FragmentModsBinding>(FragmentModsBinding::infl
             modsAdapter.submitList(it)
             visibleProgress(false)
         }
+        listModsErrors.observe(viewLifecycleOwner){
+            binding.root.showSnackBar(it)
+            if (binding.progressMods.isVisible){
+                visibleErrorPlaceholder(true)
+            }
+        }
+        networkError.observe(viewLifecycleOwner){
+            binding.root.showSnackBar(requireContext().getString(R.string.error_network))
+            if (binding.progressMods.isVisible){
+                visibleErrorPlaceholder(true)
+            }
+        }
     }
 
     private fun visibleProgress(boolean: Boolean){
         binding.apply {
             progressMods.isVisible = boolean
             rvMods.isGone = boolean
+            tvError.isGone = true
+        }
+    }
+
+    private fun visibleErrorPlaceholder(boolean: Boolean){
+        binding.apply {
+            progressMods.isGone = boolean
+            rvMods.isGone = true
+            tvError.isVisible = boolean
         }
     }
 }

@@ -1,7 +1,10 @@
 package com.playground.modmelonskins.extensions
 
 import android.content.Context
+import android.content.Context.CONNECTIVITY_SERVICE
 import android.graphics.drawable.Drawable
+import android.net.ConnectivityManager
+import android.os.Build
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -13,6 +16,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.material.snackbar.Snackbar
 
 
 fun ImageView.loadImage(context: Context, pathImage: String) {
@@ -46,6 +50,18 @@ fun Long.convertDpToPx(context: Context): Int{
     return (this * context.resources.displayMetrics.density).toInt()
 }
 
-fun View.showSnackBar(message: String){
+fun Context.isOnline(): Boolean {
+    val connManager = this.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        val networkCapabilities = connManager.getNetworkCapabilities(connManager.activeNetwork)
+        networkCapabilities != null
+    } else {
+        // below Marshmallow
+        val activeNetwork = connManager.activeNetworkInfo
+        activeNetwork?.isConnectedOrConnecting == true && activeNetwork.isAvailable
+    }
+}
 
+fun View.showSnackBar(message: String){
+    Snackbar.make(this, message, Snackbar.LENGTH_LONG).show()
 }

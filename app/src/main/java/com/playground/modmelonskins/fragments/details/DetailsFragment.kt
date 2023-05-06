@@ -5,8 +5,8 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginBottom
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.playground.modmelonskins.databinding.FragmentDetailsBinding
@@ -14,6 +14,7 @@ import com.playground.modmelonskins.domain.entities.ModEntity
 import com.playground.modmelonskins.domain.entities.SkinEntity
 import com.playground.modmelonskins.extensions.convertDpToPx
 import com.playground.modmelonskins.extensions.loadImage
+import com.playground.modmelonskins.extensions.showSnackBar
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,7 +48,7 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
                 detailsViewModel.getItemSkin(args.id)
             }
             else -> {
-                //TODO ERROR NOT FOUND TYPE
+                detailsViewModel.setError()
             }
         }
     }
@@ -55,10 +56,17 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
     private fun DetailsViewModel.setObservable() {
         itemMods.observe(viewLifecycleOwner){
             binding.setData(it)
+            showError(false)
         }
 
         itemSkins.observe(viewLifecycleOwner){
             binding.setData(it)
+            showError(false)
+        }
+
+        itemError.observe(viewLifecycleOwner){
+            binding.root.showSnackBar(it)
+            showError(true)
         }
     }
 
@@ -101,6 +109,13 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
             imageView.layoutParams = params
             imageView.loadImage(requireContext(), itemImage)
             binding.llImages.addView(imageView)
+        }
+    }
+
+    private fun showError(boolean: Boolean){
+        binding.apply {
+            constraintError.isVisible = boolean
+            constraintItem.isGone = boolean
         }
     }
 

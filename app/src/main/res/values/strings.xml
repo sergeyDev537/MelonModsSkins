@@ -6,4 +6,8 @@
     <string name="next_page">Next page</string>
 
     <!--ERRORS-->
+    <string name="error_list_empty">Sorry, there are no options available at the moment, please try again later</string>
+    <string name="error_network">Please, check WiFi or internet connection</string>
+    <string name="error_not_found_item_id">Sorry, no such item was found, it may have been deleted, please try again later</string>
+    <string name="error_placeholder">Oops, something is wrong, we are already dealing with it</string>
 </resources>
