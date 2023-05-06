@@ -9,7 +9,11 @@
         android:id="@+id/navigation_skins"
         android:name="com.playground.modmelonskins.fragments.skins.SkinsFragment"
         android:label="@string/title_skins"
-        tools:layout="@layout/fragment_skins" />
+        tools:layout="@layout/fragment_skins" >
+        <action
+            android:id="@+id/action_navigation_skins_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_mods"

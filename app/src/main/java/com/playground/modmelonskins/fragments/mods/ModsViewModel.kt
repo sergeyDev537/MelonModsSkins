@@ -16,7 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ModsViewModel @Inject constructor(
     private val getListModsUseCase: GetListModsUseCase,
-    private val getItemModUseCase: GetItemModUseCase,
     private val downloadModsUseCase: DownloadModsUseCase
 ) : ViewModel() {
 
