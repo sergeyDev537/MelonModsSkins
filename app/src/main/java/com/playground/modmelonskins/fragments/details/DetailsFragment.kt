@@ -17,6 +17,6 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("TAGING", "ARGS: ${args.id}")
+        Log.d("TAGING", "TYPE: ${args.type}, ARGS: ${args.id}")
     }
 }

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.playground.modmelonskins.adapters.skins.SkinsAdapter
 import com.playground.modmelonskins.databinding.FragmentSkinsBinding
 import com.playground.modmelonskins.extensions.showSnackBar
+import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,7 +37,10 @@ class SkinsFragment : BaseFragment<FragmentSkinsBinding>(FragmentSkinsBinding::i
         skinsAdapter.clickItemSkins = {id ->
             id?.let {
                 findNavController().navigate(
-                    SkinsFragmentDirections.actionNavigationSkinsToDetailsFragment(it)
+                    SkinsFragmentDirections.actionNavigationSkinsToDetailsFragment(
+                        type = FirebaseManager.FILE_SKINS_JSON,
+                        id = it
+                    )
                 )
             } ?: binding.root.showSnackBar("ERROR")
         }
