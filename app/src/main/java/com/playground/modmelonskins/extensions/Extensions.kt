@@ -20,8 +20,6 @@ fun ImageView.loadImage(context: Context, pathImage: String) {
         .centerCrop()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .priority(Priority.HIGH)
-        .dontAnimate()
-        .dontTransform()
     Glide.with(context)
         .load(pathImage)
         .apply(options)
@@ -42,6 +40,10 @@ fun ConstraintLayout.loadImage(context: Context, pathImage: String){
 
             override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
         })
+}
+
+fun Long.convertDpToPx(context: Context): Int{
+    return (this * context.resources.displayMetrics.density).toInt()
 }
 
 fun View.showSnackBar(message: String){
