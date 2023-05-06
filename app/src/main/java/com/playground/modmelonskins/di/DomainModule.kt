@@ -1,5 +1,6 @@
 package com.playground.modmelonskins.di
 
+import com.playground.modmelonskins.domain.repositories.DownloadRepository
 import com.playground.modmelonskins.domain.repositories.InfoRepository
 import com.playground.modmelonskins.domain.repositories.ModsRepository
 import com.playground.modmelonskins.domain.repositories.SkinsRepository
@@ -23,12 +24,8 @@ class DomainModule {
         GetListSkinsUseCase(skinsRepository)
 
     @Provides
-    fun provideDownloadModsUseCase(modsRepository: ModsRepository) =
-        DownloadModsUseCase(modsRepository)
-
-    @Provides
-    fun provideDownloadSkinsUseCase(skinsRepository: SkinsRepository) =
-        DownloadSkinsUseCase(skinsRepository)
+    fun provideDownloadItemUseCase(downloadRepository: DownloadRepository) =
+        DownloadItemUseCase(downloadRepository)
 
     @Provides
     fun provideGetInfoUseCase(infoRepository: InfoRepository) =

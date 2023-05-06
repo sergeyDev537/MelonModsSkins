@@ -8,6 +8,4 @@ interface ModsRepository {
 
     fun getItemMod(id: Int): ModEntity?
 
-    suspend fun downloadMod(path: String): Boolean
-
 }

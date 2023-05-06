@@ -8,6 +8,4 @@ interface SkinsRepository {
 
     fun getItemSkin(id: Int): SkinEntity?
 
-    suspend fun downloadSkin(path: String): Boolean
-
 }

@@ -1,5 +1,6 @@
 package com.playground.modmelonskins.data.impl
 
+import com.playground.modmelonskins.data.manager.downloader.AndroidDownloader
 import com.playground.modmelonskins.data.mapper.ModsMapper
 import com.playground.modmelonskins.domain.entities.ModEntity
 import com.playground.modmelonskins.domain.repositories.ModsRepository
@@ -9,7 +10,7 @@ import com.playground.modmelonskins.firebase.dto.ModDto
 
 class ModsRepositoryImpl(
     private val firebaseManager: FirebaseManager,
-    private val modsMapper: ModsMapper,
+    private val modsMapper: ModsMapper
 ) : ModsRepository {
 
     private var listMods: List<ModEntity> = listOf()
@@ -26,10 +27,6 @@ class ModsRepositoryImpl(
 
     override fun getItemMod(id: Int): ModEntity? {
         return listMods.find { mod -> id == mod.id }
-    }
-
-    override suspend fun downloadMod(path: String): Boolean {
-        TODO("Not yet implemented")
     }
 
 }
