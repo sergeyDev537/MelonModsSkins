@@ -1,10 +1,12 @@
 package com.playground.modmelonskins.firebase
 
+import android.accounts.NetworkErrorException
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.playground.modmelonskins.firebase.dto.ModDto
 import com.playground.modmelonskins.firebase.dto.SkinDto
+import kotlinx.coroutines.tasks.asDeferred
 import kotlinx.coroutines.tasks.await
 
 class FirebaseManager {
@@ -13,7 +15,8 @@ class FirebaseManager {
 
     private suspend fun getDataSnapshot(typeMods: String): DataSnapshot {
         val myRef = database.getReference(typeMods)
-        return myRef.get().await()
+        val result = myRef.get().await()
+        return result
     }
 
     suspend fun getListMods():List<ModDto?>{

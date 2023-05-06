@@ -1,13 +1,14 @@
 package com.playground.modmelonskins.fragments.mods
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.accounts.NetworkErrorException
+import android.app.Application
+import androidx.lifecycle.*
+import com.playground.modmelonskins.R
 import com.playground.modmelonskins.domain.entities.ModEntity
 import com.playground.modmelonskins.domain.usecases.DownloadModsUseCase
 import com.playground.modmelonskins.domain.usecases.GetItemModUseCase
 import com.playground.modmelonskins.domain.usecases.GetListModsUseCase
+import com.playground.modmelonskins.fragments.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,12 +16,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ModsViewModel @Inject constructor(
+    application: Application,
     private val getListModsUseCase: GetListModsUseCase,
     private val downloadModsUseCase: DownloadModsUseCase
-) : ViewModel() {
+) : BaseViewModel(application) {
 
     private var _listMods = MutableLiveData<List<ModEntity>>()
     val listMods: LiveData<List<ModEntity>> = _listMods
+
+    private var _listModsErrors = MutableLiveData<String>()
+    val listModsErrors: LiveData<String> = _listModsErrors
 
     init {
         getListMods()
@@ -28,8 +33,19 @@ class ModsViewModel @Inject constructor(
 
     private fun getListMods(){
         viewModelScope.launch(Dispatchers.IO) {
-            val result = getListModsUseCase()
-            _listMods.postValue(result)
+            try {
+                val result = getListModsUseCase()
+                if (result.isEmpty()){
+                    _listModsErrors.postValue(context.getString(R.string.error_list_empty))
+                }
+                else{
+                    _listMods.postValue(result)
+                }
+            }
+            catch (e: Exception){
+                _listModsErrors.postValue(e.message)
+            }
+
         }
     }
 
