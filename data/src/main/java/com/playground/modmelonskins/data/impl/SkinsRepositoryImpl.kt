@@ -25,8 +25,4 @@ class SkinsRepositoryImpl(
     override fun getItemSkin(id: Int): SkinEntity? {
         return listSkins.find { mod -> id == mod.id }
     }
-
-    override suspend fun downloadSkin(path: String): Boolean {
-        TODO("Not yet implemented")
-    }
 }

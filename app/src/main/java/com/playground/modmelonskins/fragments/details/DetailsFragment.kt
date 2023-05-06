@@ -121,7 +121,13 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
 
     private fun FragmentDetailsBinding.setClickListeners() {
         buttonNextPage.setOnClickListener {
-            //TODO CLICK
+            detailsViewModel.itemMods.value?.pathFile?.let {
+                detailsViewModel.downloadFile(it)
+            } ?: run {
+                detailsViewModel.downloadFile(
+                    detailsViewModel.itemSkins.value?.pathFile ?: ""
+                )
+            }
         }
     }
 

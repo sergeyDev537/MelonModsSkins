@@ -4,6 +4,7 @@ import android.accounts.NetworkErrorException
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.playground.modmelonskins.firebase.dto.ModDto
 import com.playground.modmelonskins.firebase.dto.SkinDto
 import kotlinx.coroutines.tasks.asDeferred
@@ -37,6 +38,12 @@ class FirebaseManager {
             listDto.add(itemDto)
         }
         return listDto
+    }
+
+    fun getNameFile(url: String): String{
+        val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(url)
+        val name = storageReference.name
+        return name
     }
 
 
