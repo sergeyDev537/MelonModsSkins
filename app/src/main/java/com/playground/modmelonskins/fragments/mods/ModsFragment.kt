@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.playground.modmelonskins.adapters.mods.ModsAdapter
 import com.playground.modmelonskins.databinding.FragmentModsBinding
 import com.playground.modmelonskins.extensions.showSnackBar
+import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,7 +38,10 @@ class ModsFragment : BaseFragment<FragmentModsBinding>(FragmentModsBinding::infl
         modsAdapter.clickItemMods = {id ->
             id?.let {
                 findNavController().navigate(
-                    ModsFragmentDirections.actionNavigationModsToDetailsFragment(it)
+                    ModsFragmentDirections.actionNavigationModsToDetailsFragment(
+                        type = FirebaseManager.FILE_MODS_JSON,
+                        id = it
+                    )
                 )
             } ?: binding.root.showSnackBar("ERROR")
         }
