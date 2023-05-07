@@ -1,4 +1,4 @@
-package com.playground.modmelonskins.fragments.dialogs
+package com.playground.modmelonskins.fragments.dialogs.downloading
 
 import android.app.DownloadManager
 import android.os.Bundle
@@ -15,7 +15,6 @@ import com.playground.modmelonskins.domain.entities.DownloadStatus
 import com.playground.modmelonskins.extensions.showSnackBar
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseDialogCancelableFragment
-import com.playground.modmelonskins.fragments.dialogs.vm.DialogDownloadingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -33,6 +33,9 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
         parseArgs()
         detailsViewModel.apply {
             setObservable()
+            loadNative(binding.adsTemplateSmallHeader.myTemplate)
+            loadNative(binding.adsTemplateSmallFooter.myTemplate)
+            //loadBanner(binding.adsBanner)
         }
         binding.apply {
             setClickListeners()

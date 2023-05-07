@@ -1,12 +1,16 @@
 package com.playground.modmelonskins.di
 
 import android.content.Context
+import com.playground.modmelonskins.ads.managers.BannerManager
+import com.playground.modmelonskins.ads.managers.NativeManager
+import com.playground.modmelonskins.data.impl.AdsRepositoryImpl
 import com.playground.modmelonskins.data.impl.DownloadRepositoryImpl
 import com.playground.modmelonskins.data.impl.ModsRepositoryImpl
 import com.playground.modmelonskins.data.impl.SkinsRepositoryImpl
 import com.playground.modmelonskins.data.manager.downloader.AndroidDownloader
 import com.playground.modmelonskins.data.mapper.ModsMapper
 import com.playground.modmelonskins.data.mapper.SkinsMapper
+import com.playground.modmelonskins.domain.repositories.AdsRepository
 import com.playground.modmelonskins.domain.repositories.DownloadRepository
 import com.playground.modmelonskins.domain.repositories.ModsRepository
 import com.playground.modmelonskins.domain.repositories.SkinsRepository
@@ -50,6 +54,27 @@ class DataModule {
     ): DownloadRepository = DownloadRepositoryImpl(
         downloader = downloader
     )
+
+    @Provides
+    @Singleton
+    fun provideAdsRepository(
+        nativeManager: NativeManager,
+        bannerManager: BannerManager
+    ): AdsRepository = AdsRepositoryImpl(
+        nativeManager = nativeManager,
+        bannerManager = bannerManager
+    )
+
+    /*ADS MANAGERS*/
+    @Provides
+    @Singleton
+    fun provideNativeManager(@ApplicationContext context: Context) =
+        NativeManager(context = context)
+
+    @Provides
+    @Singleton
+    fun provideBannerManager() = BannerManager()
+
 
     /*DOWNLOADER*/
     @Provides

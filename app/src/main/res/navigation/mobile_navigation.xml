@@ -9,7 +9,7 @@
         android:id="@+id/navigation_skins"
         android:name="com.playground.modmelonskins.fragments.skins.SkinsFragment"
         android:label="@string/title_skins"
-        tools:layout="@layout/fragment_skins" >
+        tools:layout="@layout/fragment_skins">
         <action
             android:id="@+id/action_navigation_skins_to_dialogOpenItemFragment"
             app:destination="@id/dialogOpenItemFragment" />
@@ -19,7 +19,7 @@
         android:id="@+id/navigation_mods"
         android:name="com.playground.modmelonskins.fragments.mods.ModsFragment"
         android:label="@string/title_mods"
-        tools:layout="@layout/fragment_mods" >
+        tools:layout="@layout/fragment_mods">
         <action
             android:id="@+id/action_navigation_mods_to_dialogOpenItemFragment"
             app:destination="@id/dialogOpenItemFragment" />
@@ -48,7 +48,7 @@
 
     <dialog
         android:id="@+id/dialogOpenItemFragment"
-        android:name="com.playground.modmelonskins.fragments.dialogs.DialogOpenItemFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.open.DialogOpenItemFragment"
         android:label="DialogOpenItemFragment"
         tools:layout="@layout/dialog_open_item">
         <argument
@@ -66,7 +66,7 @@
 
     <dialog
         android:id="@+id/dialogDownloadFragment"
-        android:name="com.playground.modmelonskins.fragments.dialogs.DialogDownloadingFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.downloading.DialogDownloadingFragment"
         android:label="DialogOpenItemFragment"
         tools:layout="@layout/dialog_downloading_item">
         <argument
@@ -79,7 +79,7 @@
 
     <dialog
         android:id="@+id/dialogPreDownloadingFragment"
-        android:name="com.playground.modmelonskins.fragments.dialogs.DialogPreDownloadingFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.predownload.DialogPreDownloadingFragment"
         android:label="DialogPreDownloadingFragment"
         tools:layout="@layout/dialog_pre_downloading_item">
         <argument

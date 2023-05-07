@@ -1,6 +1,5 @@
-package com.playground.modmelonskins.fragments.dialogs.vm
+package com.playground.modmelonskins.fragments.dialogs.downloading
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.app.DownloadManager
 import android.util.Log

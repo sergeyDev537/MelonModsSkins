@@ -1,7 +1,7 @@
 package com.playground.modmelonskins.data.mapper
 
-import com.playground.modmelonskins.firebase.dto.ModDto
 import com.playground.modmelonskins.domain.entities.ModEntity
+import com.playground.modmelonskins.firebase.dto.ModDto
 
 class ModsMapper {
 

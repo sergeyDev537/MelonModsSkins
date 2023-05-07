@@ -38,6 +38,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Inner
+    implementation project(":ads")
     implementation project(":firebase")
     implementation project(":domain")
 }

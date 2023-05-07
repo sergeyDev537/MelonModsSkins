@@ -62,9 +62,27 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_item_name"
-                    tools:text="@tools:sample/lorem/random" />
+                    tools:text="" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--            <com.google.android.ads.nativetemplates.TemplateView-->
+            <!--                android:id="@+id/ads_template_small_header"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:gnt_template_type="@layout/gnt_small_template_view"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/constraint_description" />-->
+
+            <include
+                android:id="@+id/ads_template_small_header"
+                layout="@layout/item_small_native"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraint_description" />
 
             <LinearLayout
                 android:id="@+id/ll_images"
@@ -73,10 +91,18 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraint_description">
-
+                app:layout_constraintTop_toBottomOf="@id/ads_template_small_header">
 
             </LinearLayout>
+
+            <include
+                android:id="@+id/ads_template_small_footer"
+                layout="@layout/item_small_native"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_images" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_next_page"
@@ -90,7 +116,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_images" />
+                app:layout_constraintTop_toBottomOf="@id/ads_template_small_footer" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

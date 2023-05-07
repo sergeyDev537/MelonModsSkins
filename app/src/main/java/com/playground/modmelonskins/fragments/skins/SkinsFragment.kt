@@ -13,7 +13,6 @@ import com.playground.modmelonskins.databinding.FragmentSkinsBinding
 import com.playground.modmelonskins.extensions.showSnackBar
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseFragment
-import com.playground.modmelonskins.fragments.dialogs.DialogOpenItemFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
