@@ -23,8 +23,7 @@ import javax.inject.Inject
 class DetailsViewModel @Inject constructor(
     application: Application,
     private val getItemModUseCase: GetItemModUseCase,
-    private val getItemSkinUseCase: GetItemSkinUseCase,
-    private val downloadItemUseCase: DownloadItemUseCase
+    private val getItemSkinUseCase: GetItemSkinUseCase
 ) : BaseViewModel(application) {
 
     private var _itemMods = MutableLiveData<ModEntity>()
@@ -58,26 +57,6 @@ class DetailsViewModel @Inject constructor(
         _itemError.value = context.getString(R.string.error_not_found_item_id)
     }
 
-    fun downloadFile(pathFile: String){
-        viewModelScope.launch(Dispatchers.IO) {
-            if (pathFile != FirebaseManager.EMPTY_STRING){
-                try {
-                    val result = downloadItemUseCase(pathFile)
-                    Log.d("TAGING", "DOWNLOAD RESULT VM: $result")
-                }
-                catch (e: Exception){
-                    withContext(Dispatchers.Main){
-                        setError()
-                    }
-                }
-            }
-            else{
-                withContext(Dispatchers.Main){
-                    setError()
-                }
-            }
-        }
 
-    }
 
 }

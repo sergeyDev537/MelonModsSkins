@@ -28,6 +28,10 @@ class DomainModule {
         DownloadItemUseCase(downloadRepository)
 
     @Provides
+    fun provideDownloadStatusUseCase(downloadRepository: DownloadRepository) =
+        DownloadStatusUseCase(downloadRepository)
+
+    @Provides
     fun provideGetInfoUseCase(infoRepository: InfoRepository) =
         GetInfoUseCase(infoRepository)
 

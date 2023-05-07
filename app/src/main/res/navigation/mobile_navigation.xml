@@ -11,8 +11,8 @@
         android:label="@string/title_skins"
         tools:layout="@layout/fragment_skins" >
         <action
-            android:id="@+id/action_navigation_skins_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            android:id="@+id/action_navigation_skins_to_dialogOpenItemFragment"
+            app:destination="@id/dialogOpenItemFragment" />
     </fragment>
 
     <fragment
@@ -21,8 +21,8 @@
         android:label="@string/title_mods"
         tools:layout="@layout/fragment_mods" >
         <action
-            android:id="@+id/action_navigation_mods_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            android:id="@+id/action_navigation_mods_to_dialogOpenItemFragment"
+            app:destination="@id/dialogOpenItemFragment" />
     </fragment>
 
     <fragment
@@ -41,5 +41,61 @@
         <argument
             android:name="type"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailsFragment_to_dialogPreDownloadingFragment"
+            app:destination="@id/dialogPreDownloadingFragment" />
     </fragment>
+
+    <dialog
+        android:id="@+id/dialogOpenItemFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.DialogOpenItemFragment"
+        android:label="DialogOpenItemFragment"
+        tools:layout="@layout/dialog_open_item">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_dialogOpenItemFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:popUpTo="@id/dialogOpenItemFragment"
+            app:popUpToInclusive="false" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/dialogDownloadFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.DialogDownloadingFragment"
+        android:label="DialogOpenItemFragment"
+        tools:layout="@layout/dialog_downloading_item">
+        <argument
+            android:name="nameItem"
+            app:argType="string" />
+        <argument
+            android:name="pathFile"
+            app:argType="string" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/dialogPreDownloadingFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.DialogPreDownloadingFragment"
+        android:label="DialogPreDownloadingFragment"
+        tools:layout="@layout/dialog_pre_downloading_item">
+        <argument
+            android:name="nameItem"
+            app:argType="string" />
+        <argument
+            android:name="pathFile"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_dialogPreDownloadingFragment_to_dialogDownloadFragment"
+            app:destination="@id/dialogDownloadFragment"
+            app:popUpTo="@id/detailsFragment"
+            app:popUpToInclusive="false" />
+    </dialog>
+
 </navigation>

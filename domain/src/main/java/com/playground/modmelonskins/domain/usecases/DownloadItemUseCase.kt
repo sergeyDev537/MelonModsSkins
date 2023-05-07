@@ -5,7 +5,7 @@ import com.playground.modmelonskins.domain.repositories.ModsRepository
 
 class DownloadItemUseCase(private val downloadRepository: DownloadRepository) {
 
-    suspend operator fun invoke(path: String):Boolean{
+    suspend operator fun invoke(path: String):Long{
         return downloadRepository.downloadFile(path)
     }
 

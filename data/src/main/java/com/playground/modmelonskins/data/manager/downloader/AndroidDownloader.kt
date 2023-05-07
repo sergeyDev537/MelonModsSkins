@@ -1,17 +1,20 @@
 package com.playground.modmelonskins.data.manager.downloader
 
+import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.content.Context
+import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.webkit.MimeTypeMap
+import com.playground.modmelonskins.data.R
 import com.playground.modmelonskins.firebase.FirebaseManager
 import org.intellij.lang.annotations.RegExp
 import java.io.File
 
 class AndroidDownloader(
-    context: Context,
+    private val context: Context,
     private val firebaseManager: FirebaseManager
 ) : Downloader {
 
@@ -39,6 +42,43 @@ class AndroidDownloader(
         var type = map.getMimeTypeFromExtension(ext)
         type = type ?: "*/*"
         return type
+    }
+
+    @SuppressLint("Range")
+    fun getStatusDownload(downloadId: Long): Int {
+        var lastMsg = ""
+        var lastStatus = -1
+        var downloading = true
+        val query = DownloadManager.Query().setFilterById(downloadId)
+        while (downloading) {
+            val cursor: Cursor = downloadManager.query(query)
+            cursor.moveToFirst()
+            if (cursor.getInt(
+                    cursor.getColumnIndex(
+                        DownloadManager.COLUMN_STATUS
+                    )
+                ) == DownloadManager.STATUS_SUCCESSFUL ||
+                cursor.getInt(
+                    cursor.getColumnIndex(
+                        DownloadManager.COLUMN_STATUS
+                    )
+                ) == DownloadManager.STATUS_FAILED
+            ) {
+                downloading = false
+            }
+            val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+            if (status != lastStatus){
+                lastStatus = status
+            }
+
+//            val msg: String = statusMessage(status)
+//            if (msg != lastMsg) {
+//                lastMsg = msg
+//                //_statusDownload.postValue(lastMsg)
+//            }
+            cursor.close()
+        }
+        return lastStatus
     }
 
     private fun getFileNameFromUri(url: String): String {
