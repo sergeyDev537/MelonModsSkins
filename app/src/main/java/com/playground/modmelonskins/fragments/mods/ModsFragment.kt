@@ -13,6 +13,7 @@ import com.playground.modmelonskins.databinding.FragmentModsBinding
 import com.playground.modmelonskins.extensions.showSnackBar
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseFragment
+import com.playground.modmelonskins.fragments.dialogs.DialogOpenItemFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,10 +37,10 @@ class ModsFragment : BaseFragment<FragmentModsBinding>(FragmentModsBinding::infl
 
     private fun FragmentModsBinding.setAdapter() {
         rvMods.adapter = modsAdapter
-        modsAdapter.clickItemMods = {id ->
+        modsAdapter.clickItemMods = { id ->
             id?.let {
                 findNavController().navigate(
-                    ModsFragmentDirections.actionNavigationModsToDetailsFragment(
+                    ModsFragmentDirections.actionNavigationModsToDialogOpenItemFragment(
                         type = FirebaseManager.FILE_MODS_JSON,
                         id = it
                     )
@@ -49,26 +50,26 @@ class ModsFragment : BaseFragment<FragmentModsBinding>(FragmentModsBinding::infl
     }
 
     private fun ModsViewModel.setObservable() {
-        listMods.observe(viewLifecycleOwner){
+        listMods.observe(viewLifecycleOwner) {
             Log.d("TAGING", "LIST MODS FRAGMENT SIZE: ${it.size}")
             modsAdapter.submitList(it)
             visibleProgress(false)
         }
-        listModsErrors.observe(viewLifecycleOwner){
+        listModsErrors.observe(viewLifecycleOwner) {
             binding.root.showSnackBar(it)
-            if (binding.progressMods.isVisible){
+            if (binding.progressMods.isVisible) {
                 visibleErrorPlaceholder(true)
             }
         }
-        networkError.observe(viewLifecycleOwner){
+        networkError.observe(viewLifecycleOwner) {
             binding.root.showSnackBar(requireContext().getString(R.string.error_network))
-            if (binding.progressMods.isVisible){
+            if (binding.progressMods.isVisible) {
                 visibleErrorPlaceholder(true)
             }
         }
     }
 
-    private fun visibleProgress(boolean: Boolean){
+    private fun visibleProgress(boolean: Boolean) {
         binding.apply {
             progressMods.isVisible = boolean
             rvMods.isGone = boolean
@@ -76,7 +77,7 @@ class ModsFragment : BaseFragment<FragmentModsBinding>(FragmentModsBinding::infl
         }
     }
 
-    private fun visibleErrorPlaceholder(boolean: Boolean){
+    private fun visibleErrorPlaceholder(boolean: Boolean) {
         binding.apply {
             progressMods.isGone = boolean
             rvMods.isGone = true

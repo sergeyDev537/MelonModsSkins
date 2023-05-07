@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.playground.modmelonskins.databinding.FragmentDetailsBinding
 import com.playground.modmelonskins.domain.entities.ModEntity
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBinding::inflate) {
+class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBinding::inflate) {
 
     private val args by navArgs<DetailsFragmentArgs>()
     private val detailsViewModel: DetailsViewModel by viewModels()
@@ -40,7 +41,7 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
     }
 
     private fun parseArgs() {
-        when(args.type){
+        when (args.type) {
             FirebaseManager.FILE_MODS_JSON -> {
                 detailsViewModel.getItemMod(args.id)
             }
@@ -54,24 +55,24 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
     }
 
     private fun DetailsViewModel.setObservable() {
-        itemMods.observe(viewLifecycleOwner){
+        itemMods.observe(viewLifecycleOwner) {
             binding.setData(it)
             showError(false)
         }
 
-        itemSkins.observe(viewLifecycleOwner){
+        itemSkins.observe(viewLifecycleOwner) {
             binding.setData(it)
             showError(false)
         }
 
-        itemError.observe(viewLifecycleOwner){
+        itemError.observe(viewLifecycleOwner) {
             binding.root.showSnackBar(it)
             showError(true)
         }
     }
 
     private fun FragmentDetailsBinding.setData(entity: Any) {
-        if (entity is ModEntity){
+        if (entity is ModEntity) {
             entity.imagesPath?.get(0)?.let {
                 ivMainItem.loadImage(requireContext(), it)
             }
@@ -80,8 +81,7 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
             entity.imagesPath?.let {
                 loadListImages(it.subList(1, it.size))
             }
-        }
-        else if (entity is SkinEntity){
+        } else if (entity is SkinEntity) {
             entity.imagesPath?.get(0)?.let {
                 ivMainItem.loadImage(requireContext(), it)
             }
@@ -93,8 +93,8 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
         }
     }
 
-    private fun loadListImages(listPathImages: List<String>){
-        for (itemImage in listPathImages){
+    private fun loadListImages(listPathImages: List<String>) {
+        for (itemImage in listPathImages) {
             val imageView = ImageView(requireContext())
             val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -112,7 +112,7 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
         }
     }
 
-    private fun showError(boolean: Boolean){
+    private fun showError(boolean: Boolean) {
         binding.apply {
             constraintError.isVisible = boolean
             constraintItem.isGone = boolean
@@ -122,13 +122,23 @@ class DetailsFragment: BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindi
     private fun FragmentDetailsBinding.setClickListeners() {
         buttonNextPage.setOnClickListener {
             detailsViewModel.itemMods.value?.pathFile?.let {
-                detailsViewModel.downloadFile(it)
+                nextToPreDownload(it)
             } ?: run {
-                detailsViewModel.downloadFile(
+                nextToPreDownload(
                     detailsViewModel.itemSkins.value?.pathFile ?: ""
                 )
             }
         }
+    }
+
+    private fun nextToPreDownload(pathFile: String){
+        findNavController().navigate(
+            DetailsFragmentDirections.actionDetailsFragmentToDialogPreDownloadingFragment(
+                nameItem = binding.tvItemName.text.toString(),
+                pathFile = pathFile,
+                type = args.type
+            )
+        )
     }
 
 }

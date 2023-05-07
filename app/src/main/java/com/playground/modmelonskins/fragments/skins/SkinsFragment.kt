@@ -13,6 +13,7 @@ import com.playground.modmelonskins.databinding.FragmentSkinsBinding
 import com.playground.modmelonskins.extensions.showSnackBar
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseFragment
+import com.playground.modmelonskins.fragments.dialogs.DialogOpenItemFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,10 +36,10 @@ class SkinsFragment : BaseFragment<FragmentSkinsBinding>(FragmentSkinsBinding::i
 
     private fun FragmentSkinsBinding.setAdapter() {
         rvSkins.adapter = skinsAdapter
-        skinsAdapter.clickItemSkins = {id ->
+        skinsAdapter.clickItemSkins = { id ->
             id?.let {
                 findNavController().navigate(
-                    SkinsFragmentDirections.actionNavigationSkinsToDetailsFragment(
+                    SkinsFragmentDirections.actionNavigationSkinsToDialogOpenItemFragment(
                         type = FirebaseManager.FILE_SKINS_JSON,
                         id = it
                     )
@@ -48,33 +49,33 @@ class SkinsFragment : BaseFragment<FragmentSkinsBinding>(FragmentSkinsBinding::i
     }
 
     private fun SkinsViewModel.setObservable() {
-        listSkins.observe(viewLifecycleOwner){
+        listSkins.observe(viewLifecycleOwner) {
             Log.d("TAGING", "LIST SKINS FRAGMENT SIZE: ${it.size}")
             skinsAdapter.submitList(it)
             visibleProgress(false)
         }
-        listSkinsErrors.observe(viewLifecycleOwner){
+        listSkinsErrors.observe(viewLifecycleOwner) {
             binding.root.showSnackBar(it)
-            if (binding.progressSkins.isVisible){
+            if (binding.progressSkins.isVisible) {
                 visibleErrorPlaceholder(true)
             }
         }
-        networkError.observe(viewLifecycleOwner){
+        networkError.observe(viewLifecycleOwner) {
             binding.root.showSnackBar(requireContext().getString(R.string.error_network))
-            if (binding.progressSkins.isVisible){
+            if (binding.progressSkins.isVisible) {
                 visibleErrorPlaceholder(true)
             }
         }
     }
 
-    private fun visibleProgress(boolean: Boolean){
+    private fun visibleProgress(boolean: Boolean) {
         binding.apply {
             progressSkins.isVisible = boolean
             rvSkins.isGone = boolean
         }
     }
 
-    private fun visibleErrorPlaceholder(boolean: Boolean){
+    private fun visibleErrorPlaceholder(boolean: Boolean) {
         binding.apply {
             progressSkins.isGone = boolean
             rvSkins.isGone = true
