@@ -41,6 +41,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_dialog_install" />
 
+        <include
+            android:id="@+id/ads_template_medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            layout="@layout/item_medium_native"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_install"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

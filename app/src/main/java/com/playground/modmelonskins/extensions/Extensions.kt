@@ -18,7 +18,6 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.snackbar.Snackbar
 
-
 fun ImageView.loadImage(context: Context, pathImage: String) {
     val options: RequestOptions = RequestOptions()
         .centerCrop()

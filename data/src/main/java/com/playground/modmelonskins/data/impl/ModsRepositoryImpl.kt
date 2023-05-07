@@ -1,11 +1,9 @@
 package com.playground.modmelonskins.data.impl
 
-import com.playground.modmelonskins.data.manager.downloader.AndroidDownloader
 import com.playground.modmelonskins.data.mapper.ModsMapper
 import com.playground.modmelonskins.domain.entities.ModEntity
 import com.playground.modmelonskins.domain.repositories.ModsRepository
 import com.playground.modmelonskins.firebase.FirebaseManager
-import com.playground.modmelonskins.firebase.dto.ModDto
 
 
 class ModsRepositoryImpl(

@@ -3,7 +3,6 @@ package com.playground.modmelonskins.adapters.skins
 import com.playground.modmelonskins.adapters.base.BaseAdapter
 import com.playground.modmelonskins.adapters.base.BaseViewHolder
 import com.playground.modmelonskins.databinding.ItemModsSkinsBinding
-import com.playground.modmelonskins.domain.entities.ModEntity
 import com.playground.modmelonskins.domain.entities.SkinEntity
 import com.playground.modmelonskins.extensions.loadImage
 

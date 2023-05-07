@@ -14,6 +14,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Melon Mods & Skins"
 include ':app'
-include ':domain'
 include ':data'
 include ':firebase'
+include ':ads'
+include ':nativetemplates'
+include ':domain'

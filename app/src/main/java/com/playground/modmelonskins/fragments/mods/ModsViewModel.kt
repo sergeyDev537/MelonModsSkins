@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.playground.modmelonskins.R
 import com.playground.modmelonskins.domain.entities.ModEntity
-import com.playground.modmelonskins.domain.usecases.DownloadItemUseCase
 import com.playground.modmelonskins.domain.usecases.GetListModsUseCase
 import com.playground.modmelonskins.fragments.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,15 +1,11 @@
 package com.playground.modmelonskins.di
 
-import com.playground.modmelonskins.domain.repositories.DownloadRepository
-import com.playground.modmelonskins.domain.repositories.InfoRepository
-import com.playground.modmelonskins.domain.repositories.ModsRepository
-import com.playground.modmelonskins.domain.repositories.SkinsRepository
+import com.playground.modmelonskins.domain.repositories.*
 import com.playground.modmelonskins.domain.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -42,5 +38,13 @@ class DomainModule {
     @Provides
     fun provideGetItemSkinUseCase(skinsRepository: SkinsRepository) =
         GetItemSkinUseCase(skinsRepository)
+
+    @Provides
+    fun provideLoadNativeAdsUseCase(adsRepository: AdsRepository) =
+        LoadNativeAdsUseCase(adsRepository)
+
+    @Provides
+    fun provideLoadBannerAdsUseCase(adsRepository: AdsRepository) =
+        LoadBannerAdsUseCase(adsRepository)
 
 }
