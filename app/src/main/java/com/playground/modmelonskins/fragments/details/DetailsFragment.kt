@@ -124,21 +124,27 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
 
     private fun FragmentDetailsBinding.setClickListeners() {
         buttonNextPage.setOnClickListener {
-            detailsViewModel.itemMods.value?.pathFile?.let {
-                nextToPreDownload(it)
+            detailsViewModel.itemMods.value?.let {mod ->
+                mod.pathFile?.let { file ->
+                    mod.imagesPath?.get(0)?.let { image ->
+                        nextToPreDownload(file, image)
+                    }
+                }
             } ?: run {
                 nextToPreDownload(
-                    detailsViewModel.itemSkins.value?.pathFile ?: ""
+                    detailsViewModel.itemSkins.value?.pathFile ?: "",
+                    detailsViewModel.itemSkins.value?.imagesPath?.get(0) ?: ""
                 )
             }
         }
     }
 
-    private fun nextToPreDownload(pathFile: String){
+    private fun nextToPreDownload(pathFile: String, pathImage: String) {
         findNavController().navigate(
-            DetailsFragmentDirections.actionDetailsFragmentToDialogPreDownloadingFragment(
+            DetailsFragmentDirections.actionDetailsFragmentToHowInstallFragment(
                 nameItem = binding.tvItemName.text.toString(),
                 pathFile = pathFile,
+                pathImage = pathImage,
                 type = args.type
             )
         )
