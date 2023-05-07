@@ -23,4 +23,14 @@
     <string name="download_pending">Download pending</string>
     <string name="download_successfully">Downloaded successfully</string>
     <string name="download_error">There\'s nothing to download</string>
+
+    <!--BIG TEXT-->
+    <string name="how_to_install_description">How to install: \n\n 1. After downloading restart the game to use the mod you imported.
+
+2. After downloading the mod, please load the mod once in the game and then enter the map to use the mod. If it does not take effect, please restart the game.
+
+3. After downloading different modules, each module may be placed in different categories in the menu bar on the left side of the map, please pay attention to find it.
+
+4. Due to the problem of the game itself, using too many mods to load may cause black screen and freeze problems, which can be solved by clearing the mod function and restarting the game.
+    </string>
 </resources>

@@ -42,8 +42,8 @@
             android:name="type"
             app:argType="string" />
         <action
-            android:id="@+id/action_detailsFragment_to_dialogPreDownloadingFragment"
-            app:destination="@id/dialogPreDownloadingFragment" />
+            android:id="@+id/action_detailsFragment_to_howInstallFragment"
+            app:destination="@id/howInstallFragment" />
     </fragment>
 
     <dialog
@@ -94,8 +94,29 @@
         <action
             android:id="@+id/action_dialogPreDownloadingFragment_to_dialogDownloadFragment"
             app:destination="@id/dialogDownloadFragment"
-            app:popUpTo="@id/detailsFragment"
+            app:popUpTo="@id/howInstallFragment"
             app:popUpToInclusive="false" />
     </dialog>
+    <fragment
+        android:id="@+id/howInstallFragment"
+        android:name="com.playground.modmelonskins.fragments.how_install.HowInstallFragment"
+        android:label="HowInstallFragment"
+        tools:layout="@layout/fragment_how_install">
+        <argument
+            android:name="nameItem"
+            app:argType="string" />
+        <argument
+            android:name="pathFile"
+            app:argType="string" />
+        <argument
+            android:name="pathImage"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_howInstallFragment_to_dialogPreDownloadingFragment"
+            app:destination="@id/dialogPreDownloadingFragment" />
+    </fragment>
 
 </navigation>

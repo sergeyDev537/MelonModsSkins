@@ -9,7 +9,6 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
-import com.playground.modmelonskins.ads.Constants
 import com.playground.modmelonskins.ads.R
 
 class NativeManager(
