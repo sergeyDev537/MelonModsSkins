@@ -1,5 +1,7 @@
 package com.playground.modmelonskins.activities
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -71,5 +73,13 @@ class MainActivity : AppCompatActivity(), DetailsToolbarListener, HomeToolbarLis
 
     override fun setHomeToolbar() {
         setCenterTextToolbar(false)
+    }
+
+    companion object{
+
+        fun newInstance(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
+
     }
 }

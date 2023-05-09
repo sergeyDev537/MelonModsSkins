@@ -49,6 +49,6 @@ class DomainModule {
 
     @Provides
     fun provideLoadInterstitialAdsUseCase(adsRepository: AdsRepository) =
-        LoadInterstitialAdsUseCase(adsRepository)
+        ShowInterstitialAdsUseCase(adsRepository)
 
 }

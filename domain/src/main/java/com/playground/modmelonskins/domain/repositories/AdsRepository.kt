@@ -9,6 +9,6 @@ interface AdsRepository {
 
     fun loadBanner(viewGroup: ViewGroup)
 
-    fun loadInterstitial(activity: Activity, callback: () -> Unit)
+    fun showInterstitial(activity: Activity, callback: () -> Unit)
 
 }

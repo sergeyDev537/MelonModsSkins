@@ -5,8 +5,7 @@ import android.app.Application
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.playground.modmelonskins.domain.entities.DownloadStatus
-import com.playground.modmelonskins.domain.usecases.LoadInterstitialAdsUseCase
+import com.playground.modmelonskins.domain.usecases.ShowInterstitialAdsUseCase
 import com.playground.modmelonskins.domain.usecases.LoadNativeAdsUseCase
 import com.playground.modmelonskins.fragments.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +15,7 @@ import javax.inject.Inject
 class DialogOpenItemViewModel @Inject constructor(
     application: Application,
     private val loadNativeAdsUseCase: LoadNativeAdsUseCase,
-    private val loadInterstitialAdsUseCase: LoadInterstitialAdsUseCase,
+    private val showInterstitialAdsUseCase: ShowInterstitialAdsUseCase,
 ): BaseViewModel(application) {
 
     private var _nextScreen = MutableLiveData<Unit>()
@@ -27,7 +26,7 @@ class DialogOpenItemViewModel @Inject constructor(
     }
 
     fun loadInterstitial(activity: Activity){
-        loadInterstitialAdsUseCase(activity) {
+        showInterstitialAdsUseCase(activity) {
             _nextScreen.value = Unit
         }
     }
