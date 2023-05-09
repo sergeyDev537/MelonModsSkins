@@ -9,6 +9,7 @@ import com.playground.modmelonskins.data.impl.DownloadRepositoryImpl
 import com.playground.modmelonskins.data.impl.ModsRepositoryImpl
 import com.playground.modmelonskins.data.impl.SkinsRepositoryImpl
 import com.playground.modmelonskins.data.manager.downloader.AndroidDownloader
+import com.playground.modmelonskins.data.manager.state.StateManager
 import com.playground.modmelonskins.data.mapper.ModsMapper
 import com.playground.modmelonskins.data.mapper.SkinsMapper
 import com.playground.modmelonskins.domain.repositories.AdsRepository
@@ -90,6 +91,11 @@ class DataModule {
     fun provideDownloader(@ApplicationContext context: Context, firebaseManager: FirebaseManager) =
         AndroidDownloader(context = context, firebaseManager = firebaseManager)
 
+    /*STATE MANAGER*/
+    @Provides
+    @Singleton
+    fun provideStateManager(@ApplicationContext context: Context) =
+        StateManager(context)
 
     /*MAPPERS*/
     @Provides

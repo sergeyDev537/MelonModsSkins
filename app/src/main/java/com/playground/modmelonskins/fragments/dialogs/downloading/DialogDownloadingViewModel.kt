@@ -7,9 +7,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.playground.modmelonskins.R
+import com.playground.modmelonskins.data.manager.state.StateManager
 import com.playground.modmelonskins.domain.entities.DownloadStatus
 import com.playground.modmelonskins.domain.usecases.DownloadItemUseCase
 import com.playground.modmelonskins.domain.usecases.DownloadStatusUseCase
+import com.playground.modmelonskins.domain.usecases.LoadBannerAdsUseCase
+import com.playground.modmelonskins.extensions.SingleLiveEvent
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,6 +26,7 @@ class DialogDownloadingViewModel @Inject constructor(
     application: Application,
     private val downloadItemUseCase: DownloadItemUseCase,
     private val downloadStatusUseCase: DownloadStatusUseCase,
+    private val stateManager: StateManager
 ) : BaseViewModel(application) {
 
     private var _downloadError = MutableLiveData<String>()
@@ -30,6 +34,9 @@ class DialogDownloadingViewModel @Inject constructor(
 
     private var _statusDownload = MutableLiveData<DownloadStatus>()
     val statusDownload: LiveData<DownloadStatus> = _statusDownload
+
+    private val _showRateDialog: SingleLiveEvent<Unit> = SingleLiveEvent()
+    val showRateDialog: SingleLiveEvent<Unit> = _showRateDialog
 
     fun downloadFile(pathFile: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -103,5 +110,14 @@ class DialogDownloadingViewModel @Inject constructor(
         _downloadError.value = context.getString(R.string.error_not_found_item_id)
 
     }
+
+    fun checkShowRateDialog(){
+        if (!stateManager.getAfterDownloadItem()){
+            showRateDialog.value = Unit
+            stateManager.setAfterDownloadItem()
+        }
+    }
+
+
 
 }

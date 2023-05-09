@@ -65,6 +65,9 @@ class DialogDownloadingFragment : BaseDialogCancelableFragment<DialogDownloading
         statusDownload.observe(viewLifecycleOwner) {
             updateData(it)
         }
+        showRateDialog.observe(viewLifecycleOwner){
+            findNavController().navigate(R.id.dialogRateFragment)
+        }
     }
 
     private fun updateData(downloadStatus: DownloadStatus) {
@@ -85,6 +88,7 @@ class DialogDownloadingFragment : BaseDialogCancelableFragment<DialogDownloading
                     ivSuccessDownload.isVisible = true
                 }
                 progressDownloading.isInvisible = true
+                dialogDownloadingViewModel.checkShowRateDialog()
             }
         }
     }

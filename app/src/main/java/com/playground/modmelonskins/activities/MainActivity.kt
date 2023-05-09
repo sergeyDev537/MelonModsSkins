@@ -45,11 +45,19 @@ class MainActivity : AppCompatActivity(), DetailsToolbarListener, HomeToolbarLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        mainViewModel.loadBanner(binding.toolbarLayout.adView)
         setSupportActionBar(binding.toolbarLayout.toolbarMaterial)
-
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        mainViewModel.apply {
+            loadBanner(binding.toolbarLayout.adView)
+            setObservable()
+        }
+    }
+
+    private fun MainViewModel.setObservable() {
+        showRateDialog.observe(this@MainActivity){
+            navController.navigate(R.id.dialogRateFragment)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
