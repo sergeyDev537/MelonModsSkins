@@ -3,6 +3,7 @@
     <string name="title_skins">Skins</string>
     <string name="title_mods">Mods</string>
     <string name="title_info">Info</string>
+    <string name="title_details">Details</string>
     <string name="next_page">Next page</string>
     <string name="want_to_install">Want to install this %1$s?</string>
     <string name="install">Install</string>

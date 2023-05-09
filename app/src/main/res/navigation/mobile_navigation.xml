@@ -33,7 +33,6 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.playground.modmelonskins.fragments.details.DetailsFragment"
-        android:label="DetailsFragment"
         tools:layout="@layout/fragment_details">
         <argument
             android:name="id"
@@ -100,7 +99,6 @@
     <fragment
         android:id="@+id/howInstallFragment"
         android:name="com.playground.modmelonskins.fragments.how_install.HowInstallFragment"
-        android:label="HowInstallFragment"
         tools:layout="@layout/fragment_how_install">
         <argument
             android:name="nameItem"

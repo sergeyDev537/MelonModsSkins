@@ -66,15 +66,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            <com.google.android.ads.nativetemplates.TemplateView-->
-            <!--                android:id="@+id/ads_template_small_header"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                app:gnt_template_type="@layout/gnt_small_template_view"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@id/constraint_description" />-->
-
             <include
                 android:id="@+id/ads_template_small_header"
                 layout="@layout/item_small_native"
@@ -112,6 +103,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="20dp"
+                app:backgroundTint="@color/purple"
                 android:text="@string/next_page"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
