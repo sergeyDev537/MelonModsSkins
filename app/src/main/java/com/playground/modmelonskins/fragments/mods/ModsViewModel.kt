@@ -1,10 +1,12 @@
 package com.playground.modmelonskins.fragments.mods
 
 import android.app.Application
+import android.view.ViewGroup
 import androidx.lifecycle.*
 import com.playground.modmelonskins.R
 import com.playground.modmelonskins.domain.entities.ModEntity
 import com.playground.modmelonskins.domain.usecases.GetListModsUseCase
+import com.playground.modmelonskins.domain.usecases.LoadNativeAdsUseCase
 import com.playground.modmelonskins.fragments.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ModsViewModel @Inject constructor(
     application: Application,
-    private val getListModsUseCase: GetListModsUseCase
+    private val getListModsUseCase: GetListModsUseCase,
+    private val loadNativeAdsUseCase: LoadNativeAdsUseCase
 ) : BaseViewModel(application) {
 
     private var _listMods = MutableLiveData<List<ModEntity>>()
@@ -43,4 +46,9 @@ class ModsViewModel @Inject constructor(
             }
         }
     }
+
+    fun loadNative(viewGroup: ViewGroup){
+        loadNativeAdsUseCase(viewGroup)
+    }
+
 }
