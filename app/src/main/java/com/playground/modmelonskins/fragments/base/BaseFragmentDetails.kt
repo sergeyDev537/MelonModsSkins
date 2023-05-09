@@ -8,22 +8,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
-
-abstract class BaseFragment<VB : ViewBinding>(
+abstract class BaseFragmentDetails<VB : ViewBinding>(
     private val inflate: Inflate<VB>,
-) : Fragment() {
+) : Fragment(){
 
     private var _binding: VB? = null
     val binding get() = _binding!!
-    private var homeToolbarListener: HomeToolbarListener? = null
+    var detailsToolbarListener: DetailsToolbarListener? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is HomeToolbarListener) {
-            homeToolbarListener = context
+        if (context is DetailsToolbarListener) {
+            detailsToolbarListener = context
         } else {
-            throw RuntimeException("Activity must implement HomeToolbarListener")
+            throw RuntimeException("Activity must implement DetailsToolbarListener")
         }
     }
 
@@ -36,9 +34,8 @@ abstract class BaseFragment<VB : ViewBinding>(
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        homeToolbarListener?.setHomeToolbar()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroyView() {
