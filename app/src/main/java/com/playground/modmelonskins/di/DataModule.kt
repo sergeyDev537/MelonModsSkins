@@ -2,6 +2,7 @@ package com.playground.modmelonskins.di
 
 import android.content.Context
 import com.playground.modmelonskins.ads.managers.BannerManager
+import com.playground.modmelonskins.ads.managers.InterstitialManager
 import com.playground.modmelonskins.ads.managers.NativeManager
 import com.playground.modmelonskins.data.impl.AdsRepositoryImpl
 import com.playground.modmelonskins.data.impl.DownloadRepositoryImpl
@@ -59,10 +60,12 @@ class DataModule {
     @Singleton
     fun provideAdsRepository(
         nativeManager: NativeManager,
-        bannerManager: BannerManager
+        bannerManager: BannerManager,
+        interstitialManager: InterstitialManager
     ): AdsRepository = AdsRepositoryImpl(
         nativeManager = nativeManager,
-        bannerManager = bannerManager
+        bannerManager = bannerManager,
+        interstitialManager = interstitialManager
     )
 
     /*ADS MANAGERS*/
@@ -74,6 +77,11 @@ class DataModule {
     @Provides
     @Singleton
     fun provideBannerManager() = BannerManager()
+
+    @Provides
+    @Singleton
+    fun provideInterstitialManager(@ApplicationContext context: Context) =
+        InterstitialManager(context)
 
 
     /*DOWNLOADER*/

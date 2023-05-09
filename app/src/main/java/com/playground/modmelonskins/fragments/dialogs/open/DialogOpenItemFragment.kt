@@ -24,6 +24,20 @@ class DialogOpenItemFragment :
             setData()
             setClickListeners()
         }
+        dialogOpenItemViewModel.apply {
+            setObserve()
+        }
+    }
+
+    private fun DialogOpenItemViewModel.setObserve() {
+        nextScreen.observe(viewLifecycleOwner){
+            findNavController().navigate(
+                DialogOpenItemFragmentDirections.actionDialogOpenItemFragmentToDetailsFragment(
+                    type = args.type,
+                    id = args.id
+                )
+            )
+        }
     }
 
     private fun DialogOpenItemBinding.setData() {
@@ -35,12 +49,7 @@ class DialogOpenItemFragment :
 
     private fun DialogOpenItemBinding.setClickListeners() {
         buttonInstall.setOnClickListener {
-            findNavController().navigate(
-                DialogOpenItemFragmentDirections.actionDialogOpenItemFragmentToDetailsFragment(
-                    type = args.type,
-                    id = args.id
-                )
-            )
+            dialogOpenItemViewModel.loadInterstitial(requireActivity())
         }
     }
 }

@@ -47,4 +47,8 @@ class DomainModule {
     fun provideLoadBannerAdsUseCase(adsRepository: AdsRepository) =
         LoadBannerAdsUseCase(adsRepository)
 
+    @Provides
+    fun provideLoadInterstitialAdsUseCase(adsRepository: AdsRepository) =
+        LoadInterstitialAdsUseCase(adsRepository)
+
 }
