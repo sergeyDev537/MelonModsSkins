@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.playground.modmelonskins.R
 import com.playground.modmelonskins.adapters.skins.SkinsAdapter
 import com.playground.modmelonskins.databinding.FragmentSkinsBinding
+import com.playground.modmelonskins.extensions.addNativeItems
 import com.playground.modmelonskins.extensions.showSnackBar
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseFragment
@@ -45,12 +46,16 @@ class SkinsFragment : BaseFragment<FragmentSkinsBinding>(FragmentSkinsBinding::i
                 )
             } ?: binding.root.showSnackBar("ERROR")
         }
+        skinsAdapter.loadNative = {
+            skinsViewModel.loadNative(it)
+        }
     }
 
     private fun SkinsViewModel.setObservable() {
         listSkins.observe(viewLifecycleOwner) {
             Log.d("TAGING", "LIST SKINS FRAGMENT SIZE: ${it.size}")
-            skinsAdapter.submitList(it)
+            val nativesList = it.addNativeItems()
+            skinsAdapter.submitList(nativesList)
             visibleProgress(false)
         }
         listSkinsErrors.observe(viewLifecycleOwner) {

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.playground.modmelonskins.R
 import com.playground.modmelonskins.adapters.mods.ModsAdapter
 import com.playground.modmelonskins.databinding.FragmentModsBinding
+import com.playground.modmelonskins.extensions.addNativeItems
 import com.playground.modmelonskins.extensions.showSnackBar
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseFragment
@@ -46,12 +47,16 @@ class ModsFragment : BaseFragment<FragmentModsBinding>(FragmentModsBinding::infl
                 )
             } ?: binding.root.showSnackBar("ERROR")
         }
+        modsAdapter.loadNative = {
+            modsViewModel.loadNative(it)
+        }
     }
 
     private fun ModsViewModel.setObservable() {
         listMods.observe(viewLifecycleOwner) {
             Log.d("TAGING", "LIST MODS FRAGMENT SIZE: ${it.size}")
-            modsAdapter.submitList(it)
+            val nativesList = it.addNativeItems()
+            modsAdapter.submitList(nativesList)
             visibleProgress(false)
         }
         listModsErrors.observe(viewLifecycleOwner) {
