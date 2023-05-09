@@ -1,9 +1,12 @@
 package com.playground.modmelonskins.extensions
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import android.view.View
@@ -84,33 +87,28 @@ fun List<Any>.addNativeItems(): MutableList<Any> {
         else {
             listNatives.add(this[position])
         }
-
-
-
-
-
-
-//        else if (position % 3 == 0) {
-//            listNatives.add(Any())
-//            listNatives.add(this[position])
-//        } else {
-//            listNatives.add(this[position])
-//        }
-//            }
-//            is SkinEntity -> {
-//                if (position in 2..2) {
-//                    listNatives.add(Any())
-//                } else if (position % 3 == 0) {
-//                    listNatives.add(Any())
-//                } else {
-//                    listNatives.add(this[position])
-//                }
-//            }
-//        }
     }
     return listNatives
 }
 
 fun View.showSnackBar(message: String) {
     Snackbar.make(this, message, Snackbar.LENGTH_LONG).show()
+}
+
+fun Context.rateApp(){
+    try {
+        startActivity(
+            Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("market://details?id=${this.packageName}")
+        )
+        )
+    } catch (e : ActivityNotFoundException) {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://play.google.com/store/apps/details?id=${this.packageName}")
+            )
+        )
+    }
 }

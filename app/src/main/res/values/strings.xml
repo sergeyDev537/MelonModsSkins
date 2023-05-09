@@ -34,4 +34,7 @@
 
 4. Due to the problem of the game itself, using too many mods to load may cause black screen and freeze problems, which can be solved by clearing the mod function and restarting the game.
     </string>
+    <string name="title_rate">Do you like this app?\nRate us on Google Play</string>
+    <string name="cancel">Cancel</string>
+    <string name="rate">Rate</string>
 </resources>
