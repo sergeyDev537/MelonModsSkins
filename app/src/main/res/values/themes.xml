@@ -11,8 +11,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-<!--        <item name="textAppearanceHeadline6">@style/TextAppearance.App.Headline6</item>-->
-<!--        <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle1</item>-->
+        <!--        <item name="textAppearanceHeadline6">@style/TextAppearance.App.Headline6</item>-->
+        <!--        <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle1</item>-->
         <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
         <!-- Customize your theme here. -->
     </style>
@@ -60,6 +60,14 @@
     <style name="DialogTheme_Window" parent="@android:style/Animation.Activity">
         <item name="android:windowEnterAnimation">@anim/anim_in</item>
         <item name="android:windowExitAnimation">@anim/anim_out</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize5Percent" parent="">
+        <item name="cornerSize">5%</item>
+    </style>
+
+    <style name="Theme.Splashscreen" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 </resources>

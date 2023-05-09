@@ -21,7 +21,7 @@ class AdsRepositoryImpl(
         bannerManager.loadBanner(viewGroup)
     }
 
-    override fun loadInterstitial(activity: Activity, callback: () -> Unit) {
+    override fun showInterstitial(activity: Activity, callback: () -> Unit) {
         interstitialManager.showInterstitial(activity, callback)
     }
 }

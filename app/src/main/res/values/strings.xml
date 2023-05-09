@@ -37,4 +37,7 @@
     <string name="title_rate">Do you like this app?\nRate us on Google Play</string>
     <string name="cancel">Cancel</string>
     <string name="rate">Rate</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
