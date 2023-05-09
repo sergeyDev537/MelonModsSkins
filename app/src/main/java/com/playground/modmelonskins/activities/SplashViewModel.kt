@@ -38,7 +38,7 @@ class SplashViewModel @Inject constructor(
     }
 
     fun showInterstitial(activity: Activity){
-        _nextScreen.value = Unit
+        //_nextScreen.value = Unit
         showInterstitialAdsUseCase(activity) {
             _nextScreen.value = Unit
         }

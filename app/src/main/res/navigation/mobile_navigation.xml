@@ -74,6 +74,11 @@
         <argument
             android:name="pathFile"
             app:argType="string" />
+        <action
+            android:id="@+id/action_dialogDownloadFragment_to_dialogRateFragment"
+            app:destination="@id/dialogRateFragment"
+            app:popUpTo="@id/howInstallFragment"
+            app:popUpToInclusive="false"/>
     </dialog>
 
     <dialog
@@ -116,5 +121,10 @@
             android:id="@+id/action_howInstallFragment_to_dialogPreDownloadingFragment"
             app:destination="@id/dialogPreDownloadingFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/dialogRateFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.rate.DialogRateFragment"
+        android:label="DialogRateFragment"
+        tools:layout="@layout/dialog_rate"/>
 
 </navigation>
