@@ -26,13 +26,14 @@
     <string name="download_error">There\'s nothing to download</string>
 
     <!--BIG TEXT-->
-    <string name="how_to_install_description">How to install: \n\n 1. After downloading restart the game to use the mod you imported.
-
-2. After downloading the mod, please load the mod once in the game and then enter the map to use the mod. If it does not take effect, please restart the game.
-
-3. After downloading different modules, each module may be placed in different categories in the menu bar on the left side of the map, please pay attention to find it.
-
-4. Due to the problem of the game itself, using too many mods to load may cause black screen and freeze problems, which can be solved by clearing the mod function and restarting the game.
+    <string name="how_to_install_description">How to install: \n\n
+1. Download mod from the button above\n\n
+2. Open My File/File Manager/Zarchiver and go to the Download folder to find the zip pack you just download. Extract to /Archive name/\n\n
+3. put all .melmod file to Melon Playground go to the Android/data/com.studio27.MelonPlayground/files/Mods/\n\n
+4. put all .melsave file to Melon Playground go to the Android/data/com.studio27.MelonPlayground/files/Saves/\n\n
+5. After completing these operations, restart the game to use the mod you imported.\n\n
+6. You can also directly move the downloaded archive to the /Mods/ or /Saves/ folder depending on the files inside. And you can unpack it directly in the selected folder. For example, if all files in the archive are of the same type - only .melmod or only .melsave.\n\n
+7. Please see the detailed instructions with screenshots in the Info tab
     </string>
     <string name="title_rate">Do you like this app?\nRate us on Google Play</string>
     <string name="cancel">Cancel</string>

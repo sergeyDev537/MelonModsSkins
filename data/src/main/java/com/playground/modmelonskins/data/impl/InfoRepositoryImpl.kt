@@ -5,6 +5,6 @@ import com.playground.modmelonskins.domain.repositories.InfoRepository
 class InfoRepositoryImpl : InfoRepository {
 
     override fun getInfo(): String {
-        TODO("Not yet implemented")
+        return ""
     }
 }
