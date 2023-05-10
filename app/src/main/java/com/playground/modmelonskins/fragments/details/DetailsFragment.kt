@@ -1,7 +1,6 @@
 package com.playground.modmelonskins.fragments.details
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -18,7 +17,6 @@ import com.playground.modmelonskins.extensions.convertDpToPx
 import com.playground.modmelonskins.extensions.loadImage
 import com.playground.modmelonskins.extensions.showSnackBar
 import com.playground.modmelonskins.firebase.FirebaseManager
-import com.playground.modmelonskins.fragments.base.BaseFragment
 import com.playground.modmelonskins.fragments.base.BaseFragmentDetails
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,18 +30,15 @@ class DetailsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("TAGING", "TYPE: ${args.type}, ARGS: ${args.id}")
         parseArgs()
         detailsViewModel.apply {
             setObservable()
             loadNative(binding.adsTemplateSmallHeader.myTemplate)
             loadNative(binding.adsTemplateSmallFooter.myTemplate)
-            //loadBanner(binding.adsBanner)
         }
         binding.apply {
             setClickListeners()
         }
-
     }
 
     private fun setSettingsToolbar(title: String?) {

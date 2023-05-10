@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), DetailsToolbarListener, HomeToolbarLis
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun setCenterTextToolbar(boolean: Boolean){
+    private fun setCenterTextToolbar(boolean: Boolean){
         binding.toolbarLayout.toolbarMaterial.apply {
             isTitleCentered = boolean
         }

@@ -1,6 +1,5 @@
 package com.playground.modmelonskins.adapters.mods
 
-import androidx.viewbinding.ViewBinding
 import com.google.android.ads.nativetemplates.TemplateView
 import com.playground.modmelonskins.adapters.base.BaseAdapter
 import com.playground.modmelonskins.adapters.base.BaseViewHolder
@@ -23,7 +22,7 @@ class ModsAdapter: BaseAdapter<Any, ItemModsSkinsBinding>(ItemModsSkinsBinding::
                     is ItemModsSkinsBinding -> {
                         val context = binding.root.context
                         binding.tvTitle.text = itemMod.name
-                        itemMod?.imagesPath?.get(0)?.let {
+                        itemMod.imagesPath?.get(0)?.let {
                             binding.constraintItem.loadImage(context, it)
                         }
                         binding.constraintItem.setOnClickListener {

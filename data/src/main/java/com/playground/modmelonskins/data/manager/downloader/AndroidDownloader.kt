@@ -8,9 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.webkit.MimeTypeMap
-import com.playground.modmelonskins.data.R
 import com.playground.modmelonskins.firebase.FirebaseManager
-import org.intellij.lang.annotations.RegExp
 import java.io.File
 
 class AndroidDownloader(
@@ -46,7 +44,6 @@ class AndroidDownloader(
 
     @SuppressLint("Range")
     fun getStatusDownload(downloadId: Long): Int {
-        var lastMsg = ""
         var lastStatus = -1
         var downloading = true
         val query = DownloadManager.Query().setFilterById(downloadId)
@@ -70,12 +67,6 @@ class AndroidDownloader(
             if (status != lastStatus){
                 lastStatus = status
             }
-
-//            val msg: String = statusMessage(status)
-//            if (msg != lastMsg) {
-//                lastMsg = msg
-//                //_statusDownload.postValue(lastMsg)
-//            }
             cursor.close()
         }
         return lastStatus

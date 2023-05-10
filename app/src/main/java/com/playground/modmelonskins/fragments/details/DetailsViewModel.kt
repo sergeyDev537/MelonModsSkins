@@ -4,13 +4,11 @@ import android.app.Application
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.android.ads.nativetemplates.TemplateView
 import com.playground.modmelonskins.R
 import com.playground.modmelonskins.domain.entities.ModEntity
 import com.playground.modmelonskins.domain.entities.SkinEntity
 import com.playground.modmelonskins.domain.usecases.GetItemModUseCase
 import com.playground.modmelonskins.domain.usecases.GetItemSkinUseCase
-import com.playground.modmelonskins.domain.usecases.LoadBannerAdsUseCase
 import com.playground.modmelonskins.domain.usecases.LoadNativeAdsUseCase
 import com.playground.modmelonskins.fragments.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

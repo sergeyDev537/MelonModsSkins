@@ -2,7 +2,6 @@ package com.playground.modmelonskins.fragments.dialogs.downloading
 
 import android.app.Application
 import android.app.DownloadManager
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -11,7 +10,6 @@ import com.playground.modmelonskins.data.manager.state.StateManager
 import com.playground.modmelonskins.domain.entities.DownloadStatus
 import com.playground.modmelonskins.domain.usecases.DownloadItemUseCase
 import com.playground.modmelonskins.domain.usecases.DownloadStatusUseCase
-import com.playground.modmelonskins.domain.usecases.LoadBannerAdsUseCase
 import com.playground.modmelonskins.extensions.SingleLiveEvent
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseViewModel
@@ -45,7 +43,6 @@ class DialogDownloadingViewModel @Inject constructor(
                     val id = downloadItemUseCase(pathFile)
                     val status = downloadStatusUseCase(id)
                     _statusDownload.postValue(statusMessage(status))
-                    Log.d("TAGING", "DOWNLOAD RESULT VM: $id")
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
                         setError()

@@ -1,12 +1,16 @@
 package com.playground.modmelonskins.fragments.dialogs.predownload
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.playground.modmelonskins.R
 import com.playground.modmelonskins.databinding.DialogPreDownloadingItemBinding
+import com.playground.modmelonskins.extensions.showToast
 import com.playground.modmelonskins.fragments.base.BaseDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,13 +40,39 @@ class DialogPreDownloadingFragment : BaseDialogFragment<DialogPreDownloadingItem
 
     private fun DialogPreDownloadingItemBinding.setClickListeners() {
         buttonDownload.setOnClickListener {
-            findNavController().navigate(
-                DialogPreDownloadingFragmentDirections.actionDialogPreDownloadingFragmentToDialogDownloadFragment(
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                checkPermissions()
+            } else {
+                showDownloadingDialog()
+            }
+        }
+    }
+
+    private fun showDownloadingDialog() {
+        findNavController().navigate(
+            DialogPreDownloadingFragmentDirections
+                .actionDialogPreDownloadingFragmentToDialogDownloadFragment(
                     nameItem = args.nameItem,
                     pathFile = args.pathFile
                 )
-            )
-        }
+        )
     }
+
+    private fun checkPermissions() {
+        activityResultLauncher.launch(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+    }
+
+    private val activityResultLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            if (isGranted) {
+                showDownloadingDialog()
+            } else {
+                requireContext().showToast(getString(R.string.permission_not_granted))
+            }
+        }
 
 }

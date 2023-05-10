@@ -8,7 +8,6 @@ import androidx.navigation.fragment.navArgs
 import com.playground.modmelonskins.R
 import com.playground.modmelonskins.databinding.FragmentHowInstallBinding
 import com.playground.modmelonskins.extensions.loadImage
-import com.playground.modmelonskins.fragments.base.BaseFragment
 import com.playground.modmelonskins.fragments.base.BaseFragmentDetails
 import dagger.hilt.android.AndroidEntryPoint
 

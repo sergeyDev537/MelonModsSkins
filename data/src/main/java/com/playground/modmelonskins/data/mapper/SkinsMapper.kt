@@ -9,7 +9,7 @@ class SkinsMapper {
         mapDtoToEntity(it)
     }
 
-    fun mapDtoToEntity(modDto: SkinDto?) = SkinEntity(
+    private fun mapDtoToEntity(modDto: SkinDto?) = SkinEntity(
         id = modDto?.id,
         name = modDto?.name,
         description = modDto?.description,

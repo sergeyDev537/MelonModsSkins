@@ -46,4 +46,5 @@
     <string name="reminders_notification_channel_name">Channel name</string>
     <string name="title_notification_reminder">Title notification</string>
     <string name="description_notification_reminder">Description notification</string>
+    <string name="permission_not_granted">Permission not granted</string>
 </resources>
