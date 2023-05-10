@@ -40,6 +40,10 @@ class DomainModule {
         GetItemSkinUseCase(skinsRepository)
 
     @Provides
+    fun provideStartDailyNotificationUseCase(dailyNotificationRepository: DailyNotificationRepository) =
+        StartDailyNotificationUseCase(dailyNotificationRepository)
+
+    @Provides
     fun provideLoadNativeAdsUseCase(adsRepository: AdsRepository) =
         LoadNativeAdsUseCase(adsRepository)
 

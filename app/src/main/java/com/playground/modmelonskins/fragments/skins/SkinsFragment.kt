@@ -38,12 +38,17 @@ class SkinsFragment : BaseFragment<FragmentSkinsBinding>(FragmentSkinsBinding::i
         rvSkins.adapter = skinsAdapter
         skinsAdapter.clickItemSkins = { id ->
             id?.let {
-                findNavController().navigate(
-                    SkinsFragmentDirections.actionNavigationSkinsToDialogOpenItemFragment(
-                        type = FirebaseManager.FILE_SKINS_JSON,
-                        id = it
+                try {
+                    findNavController().navigate(
+                        SkinsFragmentDirections.actionNavigationSkinsToDialogOpenItemFragment(
+                            type = FirebaseManager.FILE_SKINS_JSON,
+                            id = it
+                        )
                     )
-                )
+                }
+                catch (e: Exception){
+
+                }
             } ?: binding.root.showSnackBar("ERROR")
         }
         skinsAdapter.loadNative = {
