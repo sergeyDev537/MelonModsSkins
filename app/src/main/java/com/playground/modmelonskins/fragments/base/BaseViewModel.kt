@@ -7,7 +7,6 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Build
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -44,7 +43,6 @@ open class BaseViewModel @Inject constructor(application: Application) :
             object : ConnectivityManager.NetworkCallback() {
                 override fun onAvailable(network: Network) {
                     super.onAvailable(network)
-                    Log.d("TAGING", "onAvailable")
                 }
 
                 override fun onCapabilitiesChanged(
@@ -52,12 +50,10 @@ open class BaseViewModel @Inject constructor(application: Application) :
                     networkCapabilities: NetworkCapabilities,
                 ) {
                     super.onCapabilitiesChanged(network, networkCapabilities)
-                    Log.d("TAGING", "onCapabilitiesChanged")
                 }
 
                 override fun onLost(network: Network) {
                     super.onLost(network)
-                    Log.d("TAGING", "onCapabilitiesChanged")
                     _networkError.postValue(true)
                 }
             }

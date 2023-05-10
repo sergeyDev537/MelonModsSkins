@@ -2,12 +2,10 @@ package com.playground.modmelonskins.activities
 
 import android.app.Activity
 import android.app.Application
-import android.app.PendingIntent
 import android.content.Intent
 import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.playground.modmelonskins.data.manager.daily.RemindersManager
 import com.playground.modmelonskins.domain.usecases.ShowInterstitialAdsUseCase
 import com.playground.modmelonskins.domain.usecases.StartDailyNotificationUseCase
 import com.playground.modmelonskins.fragments.base.BaseViewModel
@@ -33,7 +31,7 @@ class SplashViewModel @Inject constructor(
         startDailyNotification()
     }
 
-    fun startTimer() {
+    private fun startTimer() {
         object : CountDownTimer(TIMER_MILLIS, MILLIS) {
             override fun onTick(millisUntilFinished: Long) {}
 
@@ -49,7 +47,7 @@ class SplashViewModel @Inject constructor(
         }
     }
 
-    fun startDailyNotification() {
+    private fun startDailyNotification() {
         dailyNotificationUseCase(
             Intent(context.applicationContext, AlarmReceiver::class.java)
         )

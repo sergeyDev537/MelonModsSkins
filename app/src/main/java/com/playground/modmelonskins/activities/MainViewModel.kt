@@ -1,6 +1,5 @@
 package com.playground.modmelonskins.activities
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.ads.AdView
 import com.playground.modmelonskins.data.manager.state.StateManager
@@ -10,7 +9,6 @@ import com.playground.modmelonskins.domain.usecases.LoadBannerAdsUseCase
 import com.playground.modmelonskins.extensions.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
@@ -29,7 +27,7 @@ class MainViewModel @Inject constructor(
         loadBannerAdsUseCase(adView)
     }
 
-    fun checkShowRate(){
+    private fun checkShowRate(){
         if (!stateManager.getShowTime() && calculateTime()){
             showRateDialog.value = Unit
             stateManager.setShowTime()

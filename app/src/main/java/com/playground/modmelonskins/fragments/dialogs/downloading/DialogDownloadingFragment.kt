@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.playground.modmelonskins.R
 import com.playground.modmelonskins.databinding.DialogDownloadingItemBinding
 import com.playground.modmelonskins.domain.entities.DownloadStatus
-import com.playground.modmelonskins.extensions.showSnackBar
+import com.playground.modmelonskins.extensions.showToast
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseDialogCancelableFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,7 +60,8 @@ class DialogDownloadingFragment : BaseDialogCancelableFragment<DialogDownloading
 
     private fun DialogDownloadingViewModel.setObservable() {
         downloadError.observe(viewLifecycleOwner) {
-            binding.root.showSnackBar(it)
+            requireContext().showToast(it)
+            dismiss()
         }
         statusDownload.observe(viewLifecycleOwner) {
             updateData(it)

@@ -50,8 +50,7 @@ class StateManager(private val context: Context) {
         const val KEY_AFTER_DOWNLOAD = "Key after download"
         const val KEY_TIME_DOWNLOAD = "Key time download"
         const val KEY_SHOW_TIME_DOWNLOAD = "Key show time download"
-//        const val DEFAULT_24_HOURS = 24 * 60 * 60 * 1000L
-        const val DEFAULT_24_HOURS = 30 * 1000L
+        const val DEFAULT_24_HOURS = 24 * 60 * 60 * 1000L
 
     }
 

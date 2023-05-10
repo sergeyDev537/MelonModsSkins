@@ -9,7 +9,7 @@ class ModsMapper {
         mapDtoToEntity(it)
     }
 
-    fun mapDtoToEntity(modDto:ModDto?) = ModEntity(
+    private fun mapDtoToEntity(modDto:ModDto?) = ModEntity(
         id = modDto?.id,
         name = modDto?.name,
         description = modDto?.description,
