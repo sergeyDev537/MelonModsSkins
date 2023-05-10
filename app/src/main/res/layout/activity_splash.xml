@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ic_app_splash"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize5Percent"
         app:layout_constraintBottom_toTopOf="@+id/tv_app_name"
         app:layout_constraintDimensionRatio="1:1"
@@ -40,5 +40,14 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.55" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
