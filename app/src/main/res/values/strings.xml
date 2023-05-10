@@ -40,4 +40,10 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!--NOTIFICATION-->
+    <string name="reminders_notification_channel_id">Channel custom ID</string>
+    <string name="reminders_notification_channel_name">Channel name</string>
+    <string name="title_notification_reminder">Title notification</string>
+    <string name="description_notification_reminder">Description notification</string>
 </resources>
