@@ -21,7 +21,7 @@ class RemindersManager(private val context: Context) {
                     context.applicationContext,
                     reminderId,
                     intent1,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_IMMUTABLE
                 )
             }
 

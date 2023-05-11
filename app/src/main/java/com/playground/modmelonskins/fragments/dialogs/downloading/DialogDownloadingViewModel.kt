@@ -33,8 +33,8 @@ class DialogDownloadingViewModel @Inject constructor(
     private var _statusDownload = MutableLiveData<DownloadStatus>()
     val statusDownload: LiveData<DownloadStatus> = _statusDownload
 
-    private val _showRateDialog: SingleLiveEvent<Unit> = SingleLiveEvent()
-    val showRateDialog: SingleLiveEvent<Unit> = _showRateDialog
+    //private val _showRateDialog: SingleLiveEvent<Unit> = SingleLiveEvent()
+    val showRateDialog: SingleLiveEvent<Unit> = SingleLiveEvent()
 
     fun downloadFile(pathFile: String) {
         viewModelScope.launch(Dispatchers.IO) {
