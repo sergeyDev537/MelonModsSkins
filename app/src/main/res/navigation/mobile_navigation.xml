@@ -3,23 +3,128 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_skins">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.playground.modmelonskins.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_skins"
+        android:name="com.playground.modmelonskins.fragments.skins.SkinsFragment"
+        android:label="@string/title_skins"
+        tools:layout="@layout/fragment_skins">
+        <action
+            android:id="@+id/action_navigation_skins_to_dialogOpenItemFragment"
+            app:destination="@id/dialogOpenItemFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.playground.modmelonskins.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_mods"
+        android:name="com.playground.modmelonskins.fragments.mods.ModsFragment"
+        android:label="@string/title_mods"
+        tools:layout="@layout/fragment_mods">
+        <action
+            android:id="@+id/action_navigation_mods_to_dialogOpenItemFragment"
+            app:destination="@id/dialogOpenItemFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.playground.modmelonskins.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_info"
+        android:name="com.playground.modmelonskins.fragments.info.InfoFragment"
+        android:label="@string/title_info"
+        tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.playground.modmelonskins.fragments.details.DetailsFragment"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailsFragment_to_howInstallFragment"
+            app:destination="@id/howInstallFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/dialogOpenItemFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.open.DialogOpenItemFragment"
+        android:label="DialogOpenItemFragment"
+        tools:layout="@layout/dialog_open_item">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_dialogOpenItemFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:popUpTo="@id/dialogOpenItemFragment"
+            app:popUpToInclusive="false" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/dialogDownloadFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.downloading.DialogDownloadingFragment"
+        android:label="DialogOpenItemFragment"
+        tools:layout="@layout/dialog_downloading_item">
+        <argument
+            android:name="nameItem"
+            app:argType="string" />
+        <argument
+            android:name="pathFile"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_dialogDownloadFragment_to_dialogRateFragment"
+            app:destination="@id/dialogRateFragment"
+            app:popUpTo="@id/howInstallFragment"
+            app:popUpToInclusive="false"/>
+    </dialog>
+
+    <dialog
+        android:id="@+id/dialogPreDownloadingFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.predownload.DialogPreDownloadingFragment"
+        android:label="DialogPreDownloadingFragment"
+        tools:layout="@layout/dialog_pre_downloading_item">
+        <argument
+            android:name="nameItem"
+            app:argType="string" />
+        <argument
+            android:name="pathFile"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_dialogPreDownloadingFragment_to_dialogDownloadFragment"
+            app:destination="@id/dialogDownloadFragment"
+            app:popUpTo="@id/howInstallFragment"
+            app:popUpToInclusive="false" />
+    </dialog>
+    <fragment
+        android:id="@+id/howInstallFragment"
+        android:name="com.playground.modmelonskins.fragments.how_install.HowInstallFragment"
+        tools:layout="@layout/fragment_how_install">
+        <argument
+            android:name="nameItem"
+            app:argType="string" />
+        <argument
+            android:name="pathFile"
+            app:argType="string" />
+        <argument
+            android:name="pathImage"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_howInstallFragment_to_dialogPreDownloadingFragment"
+            app:destination="@id/dialogPreDownloadingFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/dialogRateFragment"
+        android:name="com.playground.modmelonskins.fragments.dialogs.rate.DialogRateFragment"
+        android:label="DialogRateFragment"
+        tools:layout="@layout/dialog_rate"/>
+
 </navigation>
