@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:layout_marginTop="48dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,13 +19,13 @@
             android:id="@+id/title_dialog_install"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:fontFamily="@font/roboto_bold"
-            android:textSize="20sp"
             android:textColor="@color/black"
+            android:textSize="20sp"
+            app:fontFamily="@font/roboto_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text = "@string/want_to_install"/>
+            tools:text="@string/want_to_install" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_install"
