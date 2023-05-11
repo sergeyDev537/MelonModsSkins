@@ -17,11 +17,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.snackbar.Snackbar
+import com.playground.modmelonskins.R
 
 fun ImageView.loadImage(context: Context, pathImage: String) {
     val options: RequestOptions = RequestOptions()
         .centerCrop()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .placeholder(R.drawable.image_placeholder)
         .priority(Priority.HIGH)
     Glide.with(context)
         .load(pathImage)
@@ -32,6 +34,7 @@ fun ImageView.loadImage(context: Context, pathImage: String) {
 fun ConstraintLayout.loadImage(context: Context, pathImage: String) {
     Glide.with(context)
         .load(pathImage)
+        .placeholder(R.drawable.image_placeholder)
         .into(object : CustomTarget<Drawable?>() {
             override fun onResourceReady(
                 resource: Drawable,
