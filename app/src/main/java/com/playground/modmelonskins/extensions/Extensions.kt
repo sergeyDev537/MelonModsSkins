@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
@@ -101,4 +102,9 @@ fun Context.rateApp(){
             )
         )
     }
+}
+
+fun Context.openUrl(url: String){
+    val customTabsIntent = CustomTabsIntent.Builder().build()
+    customTabsIntent.launchUrl(this, Uri.parse(url))
 }
