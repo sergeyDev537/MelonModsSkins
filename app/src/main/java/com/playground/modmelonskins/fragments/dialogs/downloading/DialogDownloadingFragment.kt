@@ -54,7 +54,7 @@ class DialogDownloadingFragment : BaseDialogCancelableFragment<DialogDownloading
 
     private fun DialogDownloadingItemBinding.setClickListeners() {
         ivCancel.setOnClickListener {
-            findNavController().popBackStack()
+            dialogDownloadingViewModel.checkShowRateDialog()
         }
     }
 
@@ -67,7 +67,9 @@ class DialogDownloadingFragment : BaseDialogCancelableFragment<DialogDownloading
             updateData(it)
         }
         showRateDialog.observe(viewLifecycleOwner){
-            findNavController().navigate(R.id.dialogRateFragment)
+            findNavController().navigate(
+                DialogDownloadingFragmentDirections.actionDialogDownloadFragmentToDialogRateFragment()
+            )
         }
     }
 
@@ -89,7 +91,6 @@ class DialogDownloadingFragment : BaseDialogCancelableFragment<DialogDownloading
                     ivSuccessDownload.isVisible = true
                 }
                 progressDownloading.isInvisible = true
-                dialogDownloadingViewModel.checkShowRateDialog()
             }
         }
     }
