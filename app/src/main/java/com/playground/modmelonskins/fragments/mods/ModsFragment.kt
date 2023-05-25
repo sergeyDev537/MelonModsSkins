@@ -11,6 +11,7 @@ import com.playground.modmelonskins.R
 import com.playground.modmelonskins.adapters.mods.ModsAdapter
 import com.playground.modmelonskins.databinding.FragmentModsBinding
 import com.playground.modmelonskins.extensions.addNativeItems
+import com.playground.modmelonskins.extensions.checkCurrentFragment
 import com.playground.modmelonskins.extensions.showSnackBar
 import com.playground.modmelonskins.firebase.FirebaseManager
 import com.playground.modmelonskins.fragments.base.BaseFragment
@@ -39,16 +40,24 @@ class ModsFragment : BaseFragment<FragmentModsBinding>(FragmentModsBinding::infl
         rvMods.adapter = modsAdapter
         modsAdapter.clickItemMods = { id ->
             id?.let {
-                findNavController().navigate(
-                    ModsFragmentDirections.actionNavigationModsToDialogOpenItemFragment(
-                        type = FirebaseManager.FILE_MODS_JSON,
-                        id = it
+                if (findNavController().checkCurrentFragment(R.id.navigation_mods)){
+                    findNavController().navigate(
+                        ModsFragmentDirections.actionNavigationModsToDialogOpenItemFragment(
+                            type = FirebaseManager.FILE_MODS_JSON,
+                            id = it
+                        )
                     )
-                )
+                }
+                else{
+                    binding.root.showSnackBar("ERROR")
+                }
             } ?: binding.root.showSnackBar("ERROR")
         }
-        modsAdapter.loadNative = {
-            modsViewModel.loadNative(it)
+        modsAdapter.loadNative = {templateView ->
+            templateView?.let {
+                modsViewModel.loadNative(it)
+            }
+
         }
     }
 

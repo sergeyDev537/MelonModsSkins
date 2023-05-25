@@ -71,16 +71,20 @@ class MainActivity : AppCompatActivity(), DetailsToolbarListener, HomeToolbarLis
     }
 
     override fun setDetailsToolbar(newTitle: String) {
-        setCenterTextToolbar(true)
-        binding.toolbarLayout.toolbarMaterial.apply {
-            title = newTitle
-            setNavigationIconTint(Color.WHITE)
-            setNavigationIcon(R.drawable.ic_back_toolbar)
+        supportActionBar?.let {
+            setCenterTextToolbar(true)
+            binding.toolbarLayout.toolbarMaterial.apply {
+                title = newTitle
+                setNavigationIconTint(Color.WHITE)
+                setNavigationIcon(R.drawable.ic_back_toolbar)
+            }
         }
     }
 
     override fun setHomeToolbar() {
-        setCenterTextToolbar(false)
+        supportActionBar?.let{
+            setCenterTextToolbar(false)
+        }
     }
 
     companion object{

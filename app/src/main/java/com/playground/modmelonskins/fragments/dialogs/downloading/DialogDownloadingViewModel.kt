@@ -36,6 +36,8 @@ class DialogDownloadingViewModel @Inject constructor(
     //private val _showRateDialog: SingleLiveEvent<Unit> = SingleLiveEvent()
     val showRateDialog: SingleLiveEvent<Unit> = SingleLiveEvent()
 
+    val dismissDialog: SingleLiveEvent<Unit> = SingleLiveEvent()
+
     fun downloadFile(pathFile: String) {
         viewModelScope.launch(Dispatchers.IO) {
             if (pathFile != FirebaseManager.EMPTY_STRING) {
@@ -112,6 +114,9 @@ class DialogDownloadingViewModel @Inject constructor(
         if (!stateManager.getAfterDownloadItem()){
             showRateDialog.value = Unit
             stateManager.setAfterDownloadItem()
+        }
+        else{
+            dismissDialog.value = Unit
         }
     }
 

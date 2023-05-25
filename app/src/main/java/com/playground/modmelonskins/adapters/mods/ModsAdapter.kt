@@ -11,7 +11,7 @@ import com.playground.modmelonskins.extensions.loadImage
 class ModsAdapter: BaseAdapter<Any, ItemModsSkinsBinding>(ItemModsSkinsBinding::inflate) {
 
     var clickItemMods: ((Int?) -> Unit)? = null
-    var loadNative: ((TemplateView) -> Unit)? = null
+    var loadNative: ((TemplateView?) -> Unit)? = null
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val itemMod = getItem(position)
