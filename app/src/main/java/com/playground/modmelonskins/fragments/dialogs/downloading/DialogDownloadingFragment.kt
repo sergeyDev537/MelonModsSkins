@@ -71,6 +71,9 @@ class DialogDownloadingFragment : BaseDialogCancelableFragment<DialogDownloading
                 DialogDownloadingFragmentDirections.actionDialogDownloadFragmentToDialogRateFragment()
             )
         }
+        dismissDialog.observe(viewLifecycleOwner){
+            dismiss()
+        }
     }
 
     private fun updateData(downloadStatus: DownloadStatus) {

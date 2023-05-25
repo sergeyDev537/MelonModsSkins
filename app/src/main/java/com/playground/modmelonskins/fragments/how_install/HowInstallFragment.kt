@@ -7,7 +7,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.playground.modmelonskins.R
 import com.playground.modmelonskins.databinding.FragmentHowInstallBinding
+import com.playground.modmelonskins.extensions.checkCurrentFragment
 import com.playground.modmelonskins.extensions.loadImage
+import com.playground.modmelonskins.extensions.showSnackBar
 import com.playground.modmelonskins.fragments.base.BaseFragmentDetails
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,13 +48,18 @@ class HowInstallFragment : BaseFragmentDetails<FragmentHowInstallBinding>(
 
     private fun FragmentHowInstallBinding.setClickListeners() {
         buttonDownload.setOnClickListener {
-            findNavController().navigate(
-                HowInstallFragmentDirections.actionHowInstallFragmentToDialogPreDownloadingFragment(
-                    nameItem = args.nameItem,
-                    pathFile = args.pathFile,
-                    type = args.type
+            if (findNavController().checkCurrentFragment(R.id.howInstallFragment)){
+                findNavController().navigate(
+                    HowInstallFragmentDirections.actionHowInstallFragmentToDialogPreDownloadingFragment(
+                        nameItem = args.nameItem,
+                        pathFile = args.pathFile,
+                        type = args.type
+                    )
                 )
-            )
+            }
+            else{
+                binding.root.showSnackBar("ERROR")
+            }
         }
     }
 

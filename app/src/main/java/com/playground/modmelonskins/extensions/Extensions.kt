@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.NavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -42,7 +43,7 @@ fun ConstraintLayout.loadImage(context: Context, pathImage: String) {
                 transition: Transition<in Drawable?>?,
             ) {
                 Log.d("TAGING", "onResourceReady")
-                this@loadImage.setBackground(resource)
+                this@loadImage.background = resource
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {}
@@ -107,4 +108,8 @@ fun Context.rateApp(){
 fun Context.openUrl(url: String){
     val customTabsIntent = CustomTabsIntent.Builder().build()
     customTabsIntent.launchUrl(this, Uri.parse(url))
+}
+
+fun NavController.checkCurrentFragment(idFragment: Int): Boolean{
+    return this.currentDestination?.id == idFragment
 }
