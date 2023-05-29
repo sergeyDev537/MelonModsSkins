@@ -19,16 +19,6 @@ class MelonApp : Application() {
         super.onCreate()
         MobileAds.initialize(this) {}
         createNotificationsChannels()
-        initFirebase()
-    }
-
-    private fun initFirebase() {
-        val options = FirebaseOptions.Builder()
-            .setProjectId("melon-mods-skins")
-            .setApplicationId("1:1215144303:android:879e265f48a6690f66c89a")
-            .build()
-
-        Firebase.initialize(this, options, "Melon Mods Skins")
     }
 
     private fun createNotificationsChannels() {

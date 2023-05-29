@@ -118,6 +118,6 @@ class DataModule {
     /*FIREBASE*/
     @Provides
     @Singleton
-    fun provideFirebaseManager() = FirebaseManager()
+    fun provideFirebaseManager(@ApplicationContext context: Context) = FirebaseManager(context)
 
 }
